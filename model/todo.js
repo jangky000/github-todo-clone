@@ -11,9 +11,9 @@ class ToDo extends MySQL{
         });
     }
 
-    read(toid){
+    read(tono){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT * FROM todo WHERE toid = ?", [toid],function(err, rows, fields) {
+            this.pool.query("SELECT * FROM todo WHERE tono = ?", [tono],function(err, rows, fields) {
                 resolve(rows)
             });
         })
@@ -28,32 +28,17 @@ class ToDo extends MySQL{
         })
     }
 
-    update(todoVO, toid){
-        this.pool.execute("UPDATE todo SET title = ?, content = ?, author = ? WHERE toid = ?", [todoVO.title, todoVO.content, todoVO.author, toid], function(err, result) {
+    update(todoVO, tono){
+        this.pool.execute("UPDATE todo SET title = ?, content = ?, author = ? WHERE tono = ?", [todoVO.title, todoVO.content, todoVO.author, tono], function(err, result) {
             console.log(result.affectedRows);
         });
     }
 
-    delete(toid){
-        this.pool.execute("DELETE FROM todo WHERE toid = ?", [toid], function(err, result) {
+    delete(tono){
+        this.pool.execute("DELETE FROM todo WHERE tono = ?", [tono], function(err, result) {
             console.log(result.affectedRows);
         });
     }
 }
-
-const toDo = new ToDo();
-// toDo.read().then(e => console.log(e));
-
-todoVO = {
-    title: "테스트입니다.", 
-    content: "테스트입니다.", 
-    author: "테스트입니다."
-};
-
-todoVO2 = {
-    title: "테스트2입니다.", 
-    content: "테스트2입니다.", 
-    author: "테스트2입니다."
-};
 
 module.exports = ToDo;
