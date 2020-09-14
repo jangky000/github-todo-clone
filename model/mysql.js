@@ -1,5 +1,7 @@
 const mysql = require('mysql2');
-// 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 class MySQL{
     constructor(){
@@ -8,10 +10,10 @@ class MySQL{
     }
     init(){
         this.pool = mysql.createPool({
-            host: '101.101.210.76',
-            user: 'j174',
-            password: '12345678',
-            database: 'w2todo',
+            host: process.env.HOST,
+            user: process.env.USER,
+            password: process.env.PASSWORD,
+            database: process.env.DATABASE,
             waitForConnections: true,
             connectionLimit: 10,
             queueLimit: 0
@@ -26,7 +28,6 @@ class MySQL{
         return new Promise((resolve, reject) =>{
             this.pool.query("SELECT * FROM todo WHERE toid = ?", [1],function(err, rows, fields) {
                 // Connection is automatically released when query resolves
-                // console.log(rows);
                 resolve(rows)
             });
         })
@@ -36,7 +37,6 @@ class MySQL{
         return new Promise((resolve, reject) =>{
             this.pool.query("SELECT * FROM todo", function(err, rows, fields) {
                 // Connection is automatically released when query resolves
-                // console.log(rows);
                 resolve(rows)
             });
         })
@@ -50,18 +50,9 @@ class MySQL{
         //
     }
 
-    closeConnection(){
-        //
-        this.pool.closeConnection();
-    }
 }
 
-// module.exports = MySQL;
+module.exports = MySQL;
 
-const mysql2 = new MySQL();
-
-mysql2.list();
-mysql2.read().then(el => {
-    console.log(el);
-    mysql2.closeConnection();
-});
+// const ms = new MySQL();
+// ms.list().then(el => console.log(el));
