@@ -19,37 +19,10 @@ class MySQL{
             queueLimit: 0
         });
     }
-
-    create(){
-        //
+    
+    closeConnection(){
+        this.pool.end();
     }
-
-    read(){
-        return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT * FROM todo WHERE toid = ?", [1],function(err, rows, fields) {
-                // Connection is automatically released when query resolves
-                resolve(rows)
-            });
-        })
-    }
-
-    list(){
-        return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT * FROM todo", function(err, rows, fields) {
-                // Connection is automatically released when query resolves
-                resolve(rows)
-            });
-        })
-    }
-
-    update(){
-        //
-    }
-
-    delete(){
-        //
-    }
-
 }
 
 module.exports = MySQL;
