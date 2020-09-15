@@ -29,7 +29,7 @@ class Card extends MySQL{
     }
 
     update(CardVO){
-        this.pool.execute("UPDATE column SET ccontent = ? WHERE cardno = ?", [CardVO.ccontent, CardVO.cardno], function(err, result) {
+        this.pool.execute("UPDATE card SET ccontent = ? WHERE cardno = ?", [CardVO.ccontent, CardVO.cardno], function(err, result) {
             console.log(result.affectedRows);
         });
     }

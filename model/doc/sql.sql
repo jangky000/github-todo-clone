@@ -20,7 +20,7 @@ UPDATE member SET mname = '사용자2' WHERE memno = 1;
 DELETE FROM member WHERE memno = 1;
 
 
-CREATE TABLE `column` (
+CREATE TABLE `rcolumn` (
 	`colno` INT(11) NOT NULL AUTO_INCREMENT,
 	`cname` VARCHAR(100) NOT NULL,
 	`corder` INT(11) NOT NULL,
@@ -30,13 +30,14 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
-INSERT INTO column(cname, corder) VALUES('할 일', 1);
-SELECT colno, cname, corder FROM column WHERE colno = 1;
-SELECT  colno, cname, corder FROM column;
-UPDATE column SET cname = 'qwer' WHERE memno = 1;
-UPDATE column SET mname = '사용자2' WHERE memno = 1;
-UPDATE column SET corder = corder+1 WHERE memno = 1;
-DELETE FROM column WHERE memno = 1;
+
+INSERT INTO rcolumn(cname, corder) VALUES('할 일', 1);
+SELECT colno, cname, corder FROM rcolumn WHERE colno = 1;
+SELECT  colno, cname, corder FROM rcolumn;
+UPDATE rcolumn SET cname = 'qwer' WHERE memno = 1;
+UPDATE rcolumn SET mname = '사용자2' WHERE memno = 1;
+UPDATE rcolumn SET corder = corder+1 WHERE memno = 1;
+DELETE FROM rcolumn WHERE memno = 1;
 
 
 
@@ -62,9 +63,9 @@ COLLATE='utf8_general_ci'
 ENGINE=InnoDB
 ;
 
-INSERT INTO column(memno, colno, ccontent, corder) VALUES(1, 1, '일1', 1);
-SELECT cardno, memno, colno, ccontent, corder FROM column WHERE cardno = 1;
-SELECT cardno, memno, colno, ccontent, corder FROM column;
-UPDATE column SET ccontent = '일2' WHERE cardno = 1;
-UPDATE column SET corder = corder+1 WHERE cardno = 1;
-DELETE FROM column WHERE cardno = 1;
+INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 1, '일1', 1);
+SELECT cardno, memno, colno, ccontent, corder FROM card WHERE cardno = 1;
+SELECT cardno, memno, colno, ccontent, corder FROM card;
+UPDATE card SET ccontent = '일2' WHERE cardno = 1;
+UPDATE card SET corder = corder+1 WHERE cardno = 1;
+DELETE FROM card WHERE cardno = 1;
