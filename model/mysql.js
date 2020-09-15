@@ -19,7 +19,9 @@ class MySQL{
             queueLimit: 0
         });
     }
-    
+
+
+
     closeConnection(){
         this.pool.end();
     }
