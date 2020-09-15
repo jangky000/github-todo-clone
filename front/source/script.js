@@ -18,19 +18,19 @@ async function fetch_data(e){
 
     switch(e.currentTarget){
         case $('#btn_member'):
-            response = await fetch('http://localhost:3000/users');
+            response = await fetch('/users');
             body = await response.json();
             // console.log(body);
             $('#main').innerHTML = JSON.stringify(body);
             break;
         case $('#btn_rcolumn'):
-            response = await fetch('http://localhost:3000/rcolumn');
+            response = await fetch('/rcolumn');
             body = await response.json();
             // console.log(body);
             $('#main').innerHTML = JSON.stringify(body);
             break;
         case $('#btn_card'):
-            response = await fetch('http://localhost:3000/card');
+            response = await fetch('/card');
             body = await response.json();
             // console.log(body);
             $('#main').innerHTML = JSON.stringify(body);

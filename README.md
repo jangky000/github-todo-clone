@@ -8,7 +8,7 @@
 - cd front && npm install
 - cd .. 
 - cd server && npm install
-- npm run dev
+- npm run dev (pm2 start "npm run dev" --name todoApp)
 
 ### Week3 작업분류
 1. 환경설정
