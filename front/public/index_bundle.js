@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);\n// Module\n___CSS_LOADER_EXPORT___.push([module.i, \"\", \"\"]);\n// Exports\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack:///./source/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);\n// Module\n___CSS_LOADER_EXPORT___.push([module.i, \"body{\\r\\n    background-color: tomato;\\r\\n}\", \"\"]);\n// Exports\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack:///./source/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -130,7 +130,19 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _test_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test.js */ \"./source/test.js\");\n/* harmony import */ var _test_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_test_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./source/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_1__);\n// 엔트리 파일\r\n// 번들로 변환해서 사용\r\n// npx webpack --entry ./source/index.js --output ./public/index_bundle.js\r\n\r\n// config 설정 시\r\n// npm webpack --config webpack.config.js\r\n\r\n// 번들링 대상\r\n\r\n\n\n//# sourceURL=webpack:///./source/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ \"./source/script.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./source/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_1__);\n// 엔트리 파일\r\n// 번들로 변환해서 사용\r\n// npx webpack --entry ./source/index.js --output ./public/index_bundle.js\r\n\r\n// config 설정 시\r\n// npm webpack --config webpack.config.js\r\n\r\n// 또는 npx webpack 으로 실행\r\n// npx webpack --watch -> 수정사항 자동 업데이트\r\n\r\n// 번들링 대상\r\n\r\n\r\n\r\nObject(_script_js__WEBPACK_IMPORTED_MODULE_0__[\"init\"])();\n\n//# sourceURL=webpack:///./source/index.js?");
+
+/***/ }),
+
+/***/ "./source/script.js":
+/*!**************************!*\
+  !*** ./source/script.js ***!
+  \**************************/
+/*! exports provided: init */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"init\", function() { return init; });\n/* harmony import */ var _utils_tools_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/tools.js */ \"./source/utils/tools.js\");\n\r\n\r\nfunction init(){\r\n    const init_main = `\r\n        <button type=\"button\" id='member'>member 조회</button>\r\n        <button type=\"button\" id='rcolumn'>rcolumn 조회</button>\r\n        <button type=\"button\" id='card'>card 조회</button>\r\n    `;\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#main').innerHTML = init_main;\r\n}\r\n\n\n//# sourceURL=webpack:///./source/script.js?");
 
 /***/ }),
 
@@ -145,14 +157,15 @@ eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtim
 
 /***/ }),
 
-/***/ "./source/test.js":
-/*!************************!*\
-  !*** ./source/test.js ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./source/utils/tools.js":
+/*!*******************************!*\
+  !*** ./source/utils/tools.js ***!
+  \*******************************/
+/*! exports provided: $ */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("\n\n//# sourceURL=webpack:///./source/test.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"$\", function() { return $; });\nconst $= (sel, base=document)=>base.querySelector(sel);\n\n//# sourceURL=webpack:///./source/utils/tools.js?");
 
 /***/ })
 

@@ -5,6 +5,11 @@
 // config 설정 시
 // npm webpack --config webpack.config.js
 
+// 또는 npx webpack 으로 실행
+// npx webpack --watch -> 수정사항 자동 업데이트
+
 // 번들링 대상
-import test from "./test.js"
+import {init} from "./script.js"
 import css from './style.css'
+
+init();
