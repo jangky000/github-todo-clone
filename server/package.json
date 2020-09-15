@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run dev:front\"",
-    "dev:front": "cd ../front && http-server -p 3000",
+    "dev:front": "cd ../front && http-server -p 5000",
     "dev:server": "node ./bin/www"
   },
   "dependencies": {

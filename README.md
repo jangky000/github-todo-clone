@@ -1,9 +1,10 @@
 # javascript-w3-todo
 스프린트 3-4주차 웹 프로젝트 - 할일관리
 
-- 배포 주소: 101.101.210.76
+- 배포 주소: http://101.101.210.76:5000
 
 ### 서버 실행 방법
+- sudo npm install http-server -g
 - cd front && npm install
 - cd .. 
 - cd server && npm install
