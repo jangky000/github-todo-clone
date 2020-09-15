@@ -4,3 +4,7 @@
 
 // config 설정 시
 // npm webpack --config webpack.config.js
+
+// 번들링 대상
+import test from "./test.js"
+import css from './style.css';
