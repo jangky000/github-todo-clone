@@ -7,4 +7,4 @@
 
 // 번들링 대상
 import test from "./test.js"
-import css from './style.css';
+import css from './style.css'
