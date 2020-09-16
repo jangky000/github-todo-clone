@@ -10,7 +10,7 @@ module.exports={
     checkPW:async function (req, res, next){
         const id = req.body.id;
         const pw = req.body.pw;
-        const memberDTO = await mem.readByID(id);
+        const memberDTO = await mem.getPwById(id);
         return memberDTO.length === 1 && pw === memberDTO[0].pw ? true : false;
     }
 };

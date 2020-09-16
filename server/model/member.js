@@ -5,15 +5,33 @@ class Member extends MySQL{
         super();
     }
 
-    create(memberVO){
-        this.pool.execute("INSERT INTO member(id, pw, mname) VALUES(?, ?, ?)", [memberVO.id, memberVO.pw, memberVO.mname], function(err, result) {
-            console.log(result.affectedRows);
+    create(id, pw, mname){
+        return new Promise((resolve, reject) =>{
+            this.pool.execute("INSERT INTO member(id, pw, mname) VALUES(?, ?, ?)", [id, pw, mname], function(err, result) {
+                resolve(result.affectedRows);
+            });
         });
     }
 
-    readByID(id){
+    readByMemno(memno){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT memno, id, pw, mname FROM member WHERE id = ?", [id],function(err, rows, fields) {
+            this.pool.query("SELECT memno, id, mname FROM member WHERE memno = ?", [memno],function(err, rows, fields) {
+                resolve(rows)
+            });
+        });
+    }
+
+    readById(id){
+        return new Promise((resolve, reject) =>{
+            this.pool.query("SELECT memno, id, mname FROM member WHERE id = ?", [id],function(err, rows, fields) {
+                resolve(rows)
+            });
+        })
+    }
+
+    getPwById(id){
+        return new Promise((resolve, reject) =>{
+            this.pool.query("SELECT pw FROM member WHERE id = ?", [id],function(err, rows, fields) {
                 resolve(rows)
             });
         })
@@ -21,15 +39,27 @@ class Member extends MySQL{
 
     list(){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT * FROM member", function(err, rows, fields) {
+            this.pool.query("SELECT memno, id, mname FROM member", function(err, rows, fields) {
                 // Connection is automatically released when query resolves
                 resolve(rows)
             });
         })
     }
 
-    update(memberVO){
-        this.pool.execute("UPDATE member SET id = ?, pw = ?, mname = ? WHERE memno = ?", [memberVO.id, memberVO.pw, memberVO.mname, memberVO.memno], function(err, result) {
+    update(memberDTO){
+        this.pool.execute("UPDATE member SET pw = ?, mname = ? WHERE id = ?", [memberDTO.pw, memberDTO.mname, memberDTO.id], function(err, result) {
+            console.log(result.affectedRows);
+        });
+    }
+
+    updatePw(memberDTO){
+        this.pool.execute("UPDATE member SET pw = ? WHERE id = ?", [memberDTO.pw, memberDTO.id], function(err, result) {
+            console.log(result.affectedRows);
+        });
+    }
+
+    updateMname(memberDTO){
+        this.pool.execute("UPDATE member SET mname = ? WHERE id = ?", [memberDTO.mname, memberDTO.id], function(err, result) {
             console.log(result.affectedRows);
         });
     }
@@ -43,6 +73,6 @@ class Member extends MySQL{
 
 module.exports = Member;
 
-// const memberVO = {id:"user1", pw:"1234", mname:"사용자1"};
+// const memberDTO = {id:"user1", pw:"1234", mname:"사용자1"};
 // const mem = new Member();
-// mem.create(memberVO);
+// mem.create(memberDTO);
