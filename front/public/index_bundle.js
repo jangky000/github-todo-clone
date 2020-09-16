@@ -86,15 +86,27 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./source/style.css":
-/*!****************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./source/style.css ***!
-  \****************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./source/css/reset.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./source/css/reset.css ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);\n// Module\n___CSS_LOADER_EXPORT___.push([module.i, \"body{\\r\\n    background-color: tomato;\\r\\n}\", \"\"]);\n// Exports\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack:///./source/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);\n// Module\n___CSS_LOADER_EXPORT___.push([module.i, \"/* http://meyerweb.com/eric/tools/css/reset/ \\r\\n   v2.0 | 20110126\\r\\n   License: none (public domain)\\r\\n*/\\r\\n\\r\\nhtml, body, div, span, applet, object, iframe,\\r\\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\\r\\na, abbr, acronym, address, big, cite, code,\\r\\ndel, dfn, em, img, ins, kbd, q, s, samp,\\r\\nsmall, strike, strong, sub, sup, tt, var,\\r\\nb, u, i, center,\\r\\ndl, dt, dd, ol, ul, li,\\r\\nfieldset, form, label, legend,\\r\\ntable, caption, tbody, tfoot, thead, tr, th, td,\\r\\narticle, aside, canvas, details, embed, \\r\\nfigure, figcaption, footer, header, hgroup, \\r\\nmenu, nav, output, ruby, section, summary,\\r\\ntime, mark, audio, video {\\r\\n\\tmargin: 0;\\r\\n\\tpadding: 0;\\r\\n\\tborder: 0;\\r\\n\\tfont-size: 100%;\\r\\n\\tfont: inherit;\\r\\n\\tvertical-align: baseline;\\r\\n}\\r\\n/* HTML5 display-role reset for older browsers */\\r\\narticle, aside, details, figcaption, figure, \\r\\nfooter, header, hgroup, menu, nav, section {\\r\\n\\tdisplay: block;\\r\\n}\\r\\nbody {\\r\\n\\tline-height: 1;\\r\\n}\\r\\nol, ul {\\r\\n\\tlist-style: none;\\r\\n}\\r\\nblockquote, q {\\r\\n\\tquotes: none;\\r\\n}\\r\\nblockquote:before, blockquote:after,\\r\\nq:before, q:after {\\r\\n\\tcontent: '';\\r\\n\\tcontent: none;\\r\\n}\\r\\ntable {\\r\\n\\tborder-collapse: collapse;\\r\\n\\tborder-spacing: 0;\\r\\n}\", \"\"]);\n// Exports\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack:///./source/css/reset.css?./node_modules/css-loader/dist/cjs.js");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./source/css/style.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./source/css/style.css ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_cjs_js_reset_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../node_modules/css-loader/dist/cjs.js!./reset.css */ \"./node_modules/css-loader/dist/cjs.js!./source/css/reset.css\");\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(false);\n___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_reset_css__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n// Module\n___CSS_LOADER_EXPORT___.push([module.i, \"#header {\\r\\n    height: 80px;\\r\\n    background-color: rgb(184, 184, 184);\\r\\n}\\r\\n\\r\\n#main {\\r\\n    background-color: rgb(138, 137, 137);\\r\\n}\\r\\n\\r\\n#footer {\\r\\n    height: 100px;\\r\\n    background-color: rgb(88, 88, 88);\\r\\n}\\r\\n\\r\\n.container{\\r\\n    margin: 0 auto;\\r\\n    width: 90%;\\r\\n}\\r\\n\\r\\n/* header */\\r\\n.header_title{\\r\\n    float: left;\\r\\n}\\r\\n\\r\\n.header_nav{\\r\\n    float: right;\\r\\n}\", \"\"]);\n// Exports\n/* harmony default export */ __webpack_exports__[\"default\"] = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack:///./source/css/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -122,6 +134,17 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 
 /***/ }),
 
+/***/ "./source/css/style.css":
+/*!******************************!*\
+  !*** ./source/css/style.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!./style.css */ \"./node_modules/css-loader/dist/cjs.js!./source/css/style.css\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.i, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack:///./source/css/style.css?");
+
+/***/ }),
+
 /***/ "./source/index.js":
 /*!*************************!*\
   !*** ./source/index.js ***!
@@ -130,30 +153,43 @@ eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function mem
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ \"./source/script.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./source/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_1__);\n// 엔트리 파일\r\n// 번들로 변환해서 사용\r\n// npx webpack --entry ./source/index.js --output ./public/index_bundle.js\r\n\r\n// config 설정 시\r\n// npm webpack --config webpack.config.js\r\n\r\n// 또는 npx webpack 으로 실행\r\n// npx webpack --watch -> 수정사항 자동 업데이트\r\n\r\n// \"proxy\": \"http://101.101.210.76:3000/\"\r\n\r\n// 번들링 대상\r\n\r\n\r\n\r\nObject(_script_js__WEBPACK_IMPORTED_MODULE_0__[\"init\"])();\n\n//# sourceURL=webpack:///./source/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/script.js */ \"./source/js/script.js\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/style.css */ \"./source/css/style.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_style_css__WEBPACK_IMPORTED_MODULE_1__);\n// 엔트리 파일\r\n// 번들로 변환해서 사용\r\n// npx webpack --entry ./source/index.js --output ./public/index_bundle.js\r\n\r\n// config 설정 시\r\n// npm webpack --config webpack.config.js\r\n\r\n// 또는 npx webpack 으로 실행\r\n// npx webpack --watch -> 수정사항 자동 업데이트\r\n\r\n// \"proxy\": \"http://101.101.210.76:3000/\"\r\n\r\n// 번들링 대상\r\n\r\n\r\nnew _js_script_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n\n//# sourceURL=webpack:///./source/index.js?");
 
 /***/ }),
 
-/***/ "./source/script.js":
-/*!**************************!*\
-  !*** ./source/script.js ***!
-  \**************************/
-/*! exports provided: init */
+/***/ "./source/js/header.js":
+/*!*****************************!*\
+  !*** ./source/js/header.js ***!
+  \*****************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"init\", function() { return init; });\n/* harmony import */ var _utils_tools_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/tools.js */ \"./source/utils/tools.js\");\n\r\n\r\nfunction init(){\r\n    const init_main = `\r\n        <div>\r\n            <button type=\"button\" id='btn_member'>member 조회</button>\r\n            <button type=\"button\" id='btn_rcolumn'>rcolumn 조회</button>\r\n            <button type=\"button\" id='btn_card'>card 조회</button>\r\n        </div>\r\n        <div>\r\n            <button type=\"button\" id='btn_insert'>post</button>\r\n            <button type=\"button\" id='btn_update'>put</button>\r\n            <button type=\"button\" id='btn_delete'>delete</button>\r\n        </div>\r\n    `;\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#main').innerHTML = init_main;\r\n\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_member').addEventListener('click', fetch_data);\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_rcolumn').addEventListener('click', fetch_data);\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_card').addEventListener('click', fetch_data);\r\n\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_insert').addEventListener('click', fetch_post);\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_update').addEventListener('click', fetch_put);\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_delete').addEventListener('click', fetch_delete);\r\n}\r\n\r\nasync function fetch_data(e){\r\n    let response, body;\r\n\r\n    switch(e.currentTarget){\r\n        case Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_member'):\r\n            response = await fetch('/users');\r\n            body = await response.json();\r\n            // console.log(body);\r\n            Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#main').innerHTML = JSON.stringify(body);\r\n            break;\r\n        case Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_rcolumn'):\r\n            response = await fetch('/rcolumn');\r\n            body = await response.json();\r\n            // console.log(body);\r\n            Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#main').innerHTML = JSON.stringify(body);\r\n            break;\r\n        case Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#btn_card'):\r\n            response = await fetch('/card');\r\n            body = await response.json();\r\n            // console.log(body);\r\n            Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#main').innerHTML = JSON.stringify(body);\r\n            break;\r\n        default:\r\n            alert('no target for fetch');\r\n            break;\r\n    }\r\n}\r\n\r\nasync function fetch_post(){\r\n    const data = {id:'user2', pw:'1234', mname:'사용자2'};\r\n    const response = await fetch('/users', {\r\n        method: 'POST',\r\n        headers: {\r\n            'Content-Type': 'application/json',\r\n        },\r\n        body: JSON.stringify(data)\r\n    });\r\n    const body = await response.json();\r\n    console.log(body);\r\n    alert(JSON.stringify(body));\r\n}\r\n\r\nasync function fetch_put(){\r\n    const data = {id:'user2', pw:'1234', mname:'사용자2'};\r\n    const response = await fetch('/users', {\r\n        method: 'PUT',\r\n        headers: {\r\n            'Content-Type': 'application/json',\r\n        },\r\n        body: JSON.stringify(data)\r\n    });\r\n    const body = await response.json();\r\n    console.log(body);\r\n    alert(JSON.stringify(body));\r\n}\r\n\r\nasync function fetch_delete(){\r\n    const data = {id:'user2', pw:'1234', mname:'사용자2'};\r\n    const response = await fetch('/users', {\r\n        method: 'DELETE',\r\n        headers: {\r\n            'Content-Type': 'application/json',\r\n        },\r\n        body: JSON.stringify(data)\r\n    });\r\n    const body = await response.json()\r\n    // console.log(body);\r\n    alert(JSON.stringify(body));\r\n}\r\n\n\n//# sourceURL=webpack:///./source/script.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_tools_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/tools.js */ \"./source/utils/tools.js\");\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\r\n    constructor(isLogin){\r\n        this.init(isLogin);\r\n    }\r\n    async init(isLogin){\r\n        await this.makeLayout(isLogin);\r\n        this.addEvent(isLogin);\r\n    }\r\n\r\n    async makeLayout(isLogin){\r\n        console.log(isLogin);\r\n        const sw = isLogin.isLogin ? `<span>${isLogin.id}</span><button type=\"button\" id=\"btn_logout\">로그아웃</button>` : `<button type=\"button\" id=\"btn_login\">로그인</button>`\r\n        const header_layer = `\r\n            <div class=\"container\">\r\n                <div class=\"header_title\">\r\n                    To Do 서비스\r\n                </div>\r\n                <nav class=\"header_nav\">\r\n                    ${sw}\r\n                    <button type=\"button\" id=\"btn_menu\">메뉴</button>\r\n                </nav>\r\n            </div>\r\n        `;\r\n        Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#header').innerHTML = header_layer;\r\n    }\r\n    \r\n    addEvent(isLogin){\r\n        if(isLogin.isLogin){\r\n            Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])(\"#btn_logout\").addEventListener('click', this.logoutHandler);\r\n        } else{\r\n            Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])(\"#btn_login\").addEventListener('click', this.loginHandler);\r\n        }\r\n    }\r\n\r\n    async logoutHandler(){\r\n        const logout = await Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"fetch_get\"])('/api/member/logout');\r\n        console.log(logout);\r\n        location.reload();\r\n    }\r\n\r\n    async loginHandler(){\r\n        const login = await Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"fetch_post\"])('/api/member/login');\r\n        console.log(login);\r\n        location.reload();\r\n    }\r\n\r\n});\r\n\r\n\n\n//# sourceURL=webpack:///./source/js/header.js?");
 
 /***/ }),
 
-/***/ "./source/style.css":
-/*!**************************!*\
-  !*** ./source/style.css ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./source/js/main.js":
+/*!***************************!*\
+  !*** ./source/js/main.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n            var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js!./style.css */ \"./node_modules/css-loader/dist/cjs.js!./source/style.css\");\n\n            content = content.__esModule ? content.default : content;\n\n            if (typeof content === 'string') {\n              content = [[module.i, content, '']];\n            }\n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = api(content, options);\n\n\n\nmodule.exports = content.locals || {};\n\n//# sourceURL=webpack:///./source/style.css?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_tools_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/tools.js */ \"./source/utils/tools.js\");\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\r\n    init(){\r\n        const main_layer = `\r\n            <div>\r\n            </div>\r\n        `;\r\n    Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"$\"])('#main').innerHTML = main_layer;\r\n    }\r\n});\n\n//# sourceURL=webpack:///./source/js/main.js?");
+
+/***/ }),
+
+/***/ "./source/js/script.js":
+/*!*****************************!*\
+  !*** ./source/js/script.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_tools_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/tools.js */ \"./source/utils/tools.js\");\n/* harmony import */ var _header_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.js */ \"./source/js/header.js\");\n/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main.js */ \"./source/js/main.js\");\n\r\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (class{\r\n    constructor(){\r\n        this.init();\r\n    }\r\n\r\n    async init(){\r\n        const isLogin = await Object(_utils_tools_js__WEBPACK_IMPORTED_MODULE_0__[\"fetch_get\"])('/api/member/isLogin'); // isLogin:true/false, id:user1\r\n        console.log(isLogin);\r\n        new _header_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](isLogin);\r\n        new _main_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"](isLogin);\r\n    }\r\n\r\n});\n\n//# sourceURL=webpack:///./source/js/script.js?");
 
 /***/ }),
 
@@ -161,11 +197,11 @@ eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtim
 /*!*******************************!*\
   !*** ./source/utils/tools.js ***!
   \*******************************/
-/*! exports provided: $ */
+/*! exports provided: $, fetch_get, fetch_post */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"$\", function() { return $; });\nconst $= (sel, base=document)=>base.querySelector(sel);\n\n//# sourceURL=webpack:///./source/utils/tools.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"$\", function() { return $; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fetch_get\", function() { return fetch_get; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fetch_post\", function() { return fetch_post; });\nconst $ = (sel, base=document)=>base.querySelector(sel);\r\n\r\nconst fetch_get = async url=>{\r\n    const response = await fetch(url);\r\n    const json = await response.json();\r\n    return json;\r\n};\r\n\r\nconst fetch_post = async (url)=>{\r\n    const data = {id:'user1', pw:'1234'};\r\n    const response = await fetch(url, {\r\n        method: 'POST',\r\n        headers: {\r\n            'Content-Type': 'application/json',\r\n        },\r\n        body: JSON.stringify(data)\r\n    });\r\n    const body = await response.json();\r\n    console.log(body);\r\n    alert(JSON.stringify(body));\r\n}\n\n//# sourceURL=webpack:///./source/utils/tools.js?");
 
 /***/ })
 

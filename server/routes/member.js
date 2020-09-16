@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const memberService = require('../service/member');
+const memberService = require('../service/memberService');
 
 const Member = require('../model/member');
 const mem = new Member();
@@ -12,11 +12,17 @@ router.get('/', async function(req, res, next) {
   res.status(200).json(result);
 });
 
-/* 아이디 조회 */
-router.get('/:id', async function(req, res, next) {
-  const result = await mem.readById(req.params.id);
-  res.status(200).json(result);
+/* 로그인 조회 */
+router.get('/isLogin', function(req, res, next) {
+  res.status(200).json({isLogin:!!req.session.isLogin, id:req.session.uid});
 });
+
+/* 아이디 조회 */
+// router.get('/:id', async function(req, res, next) {
+//   // 접근 제한
+//   const result = await mem.readById(req.params.id);
+//   res.status(200).json(result);
+// });
 
 /* 회원 추가 */
 router.post('/', async function(req, res, next) {
@@ -33,9 +39,9 @@ router.post('/', async function(req, res, next) {
   }
 });
 
-
 /* 전체 수정 */
 router.put('/', function(req, res, next) {
+  // 접근 제한
   console.log(req.body);
   res.status(200).json(req.body);
 });
@@ -43,11 +49,26 @@ router.put('/', function(req, res, next) {
 /* 일부 수정 */
 /* 패스워드 수정 */
 router.patch('/:id/pw', function(req, res, next) {
+  // 접근 제한
+  // 기존의 패스워드 일치 확인
+  // 새 패스워드 일치 확인
+  // 업데이트
+  console.log(req.body);
+  res.status(200).json(req.body);
+});
+
+/* 이름 수정 */
+router.patch('/:id/mname', function(req, res, next) {
+  // 접근 제한
+  // 업데이트
   console.log(req.body);
   res.status(200).json(req.body);
 });
 
 router.delete('/', function(req, res, next) {
+  // 접근 제한
+  // 기존의 패스워드 일치 확인
+  // 삭제
   console.log(req.body);
   res.status(200).json(req.body);
 });
@@ -59,7 +80,7 @@ router.post('/login', memberService.loginLogic, function(req, res, next) {
 
 /* 세션 로그아웃 */
 router.get('/logout', function(req, res, next) {
-  request.session.destroy(err=>{
+  req.session.destroy(err=>{
     if(err){
       next(err);
     }else {

@@ -11,7 +11,6 @@
 // "proxy": "http://101.101.210.76:3000/"
 
 // 번들링 대상
-import {init} from "./script.js"
-import css from './style.css'
-
-init();
+import Page from "./js/script.js"
+import css from './css/style.css'
+new Page();

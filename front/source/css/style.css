@@ -1,0 +1,29 @@
+@import "reset.css";
+
+#header {
+    height: 80px;
+    background-color: rgb(184, 184, 184);
+}
+
+#main {
+    background-color: rgb(138, 137, 137);
+}
+
+#footer {
+    height: 100px;
+    background-color: rgb(88, 88, 88);
+}
+
+.container{
+    margin: 0 auto;
+    width: 90%;
+}
+
+/* header */
+.header_title{
+    float: left;
+}
+
+.header_nav{
+    float: right;
+}
