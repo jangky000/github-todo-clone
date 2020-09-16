@@ -63,3 +63,35 @@
 |                       |                     |                 |                 |                 |
 
 깃 태그 사용하기
+쿼리 분리
+에러처리(throw -> try catch next(err))
+세션 관리
+
+### url 라우팅
+
+- member
+로그인 post /api/member/login
+로그아웃 get /api/member/logout
+
+아이디 중복 확인 get /member/1
+패스워드 일치 확인 get /member/password/1
+회원 가입 post /member
+회원 정보 수정 put /member/1 or patch /member/1/password
+회원 탈퇴 delete /member/1
+
+- 칼럼
+칼럼 리스트 get /rcolumn/list
+칼럼 입력 post /rcolumn
+칼럼 이름 수정 patch /rcolumn/1/cname
+칼럼 순서 수정 patch /rcolumn/1/order
+칼럼 삭제 delete /rcolumn/1
+
+- 카드
+카드 리스트 get /card/list
+카드 입력 post /card
+카드 내용 수정 patch /card/1/content
+카드 순서 수정 patch /card/1/order
+카드 삭제 delete /card/1
+
+lib/auth 추가
+로그인 인증 기능 추가

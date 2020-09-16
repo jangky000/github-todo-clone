@@ -8,6 +8,8 @@
 // 또는 npx webpack 으로 실행
 // npx webpack --watch -> 수정사항 자동 업데이트
 
+// "proxy": "http://101.101.210.76:3000/"
+
 // 번들링 대상
 import {init} from "./script.js"
 import css from './style.css'
