@@ -1,4 +1,4 @@
-class MemberVO{
+class MemberDTO{
     constructor(){
         this.memno;
         this.id;

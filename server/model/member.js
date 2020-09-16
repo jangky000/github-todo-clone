@@ -11,9 +11,9 @@ class Member extends MySQL{
         });
     }
 
-    read(memno){
+    readByID(id){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT * FROM member WHERE memno = ?", [memno],function(err, rows, fields) {
+            this.pool.query("SELECT memno, id, pw, mname FROM member WHERE id = ?", [id],function(err, rows, fields) {
                 resolve(rows)
             });
         })

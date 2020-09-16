@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run dev:front\"",
-    "dev:front": "cd ../front && http-server -p 5000",
+    "dev:front": "cd ../front && http-server -p 5000 --proxy http://localhost:3000/users",
     "dev:server": "node ./bin/www"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "dotenv": "^8.2.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-session": "^1.17.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0"
