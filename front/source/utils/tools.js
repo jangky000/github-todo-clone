@@ -16,6 +16,6 @@ export const fetch_post = async (url)=>{
         body: JSON.stringify(data)
     });
     const body = await response.json();
-    console.log(body);
-    alert(JSON.stringify(body));
+    // console.log(body);
+    // alert(JSON.stringify(body));
 }

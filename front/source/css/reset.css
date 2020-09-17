@@ -28,7 +28,13 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+html{
+	height: 100%;
+}
 body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 	line-height: 1;
 }
 ol, ul {

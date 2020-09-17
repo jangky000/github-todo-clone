@@ -42,30 +42,41 @@
         - lodash 모듈
     - fetch
 
-### Week3 개발 계획표
-|월                     |화                     |수                 |목                 |금                 |
-|---|---|---|---|---|
-|express 세팅           |                     |                 |                 |                 |
-|ncloud 서버 세팅       |                     |                 |                 |                 |
-|테이블 생성            |                     |                 |                 |                 |
-|테이블 별 CRUD 제작    |                     |                 |                 |                 |
-|배포                   |                     |                 |                 |                 |
-|                       |                     |                 |                 |                 |
+## Week3 개발 진행상황
 
-### Week3 개발 진행상황
-|월                     |화                     |수                     |목                 |금                 |
-|---|---|---|---|---|
-|express 세팅           |                     |                 |                 |                 |
-|ncloud 서버 세팅       |                     |                 |                 |                 |
-|테이블 생성            |                     |                 |                 |                 |
-|테이블 별 CRUD 제작    |                     |                 |                 |                 |
-|배포                   |                     |                 |                 |                 |
-|                       |                     |                 |                 |                 |
+### day1
+- express 세팅
+- ncloud 서버 세팅
+- 테이블 생성
+- 테이블 별 CRUD 제작
+- 배포
 
-깃 태그 사용하기
-쿼리 분리
-에러처리(throw -> try catch next(err))
-세션 관리
+### day2
+- 데이터 테이블 수정 -> member, rcolumn, card
+- rest get 추가
+- http server 설치 및 webpack 설치
+- sytle, css loader 설치 적용
+- webpack plugin 설치 적용
+- lodash 설치
+- main 영역에 button 추가
+- fetch 테스트 cors 허용
+- 서버, 프론트 분리하기
+- package.json 실행 설정
+- 배포 설정 -> nodejs 업그레이드
+
+### day3
+- route 파일 구조화
+- express-session 추가
+- 로그인 인증 기능 추가(lib/auth)
+- login 기능 모듈화(미들웨어를 service 폴더, lib 폴더로 분리)
+- 회원 가입 API 기능 추가
+- reset.css 추가
+- front 모듈화(css와 js 폴더 생성), (js를 header와 main 컴포넌트로 분리)
+- front와 server에서 로그인 로그아웃 기능 연결
+
+### day4
+
+
 
 ### url 라우팅
 
@@ -73,25 +84,27 @@
 로그인 post /api/member/login
 로그아웃 get /api/member/logout
 
-아이디 중복 확인 get /member/1
-패스워드 일치 확인 get /member/password/1
-회원 가입 post /member
-회원 정보 수정 put /member/1 or patch /member/1/password
-회원 탈퇴 delete /member/1
+아이디 중복 확인 get /api/member/1
+패스워드 일치 확인 get /api/member/password/1
+회원 가입 post /api/member
+회원 정보 수정 put /api/member/1 or patch /member/1/password
+회원 탈퇴 delete /api/member/1
 
 - 칼럼
-칼럼 리스트 get /rcolumn/list
-칼럼 입력 post /rcolumn
-칼럼 이름 수정 patch /rcolumn/1/cname
-칼럼 순서 수정 patch /rcolumn/1/order
-칼럼 삭제 delete /rcolumn/1
+칼럼 리스트 get /api/rcolumn/list
+칼럼 입력 post /api/rcolumn
+칼럼 이름 수정 patch /api/rcolumn/1/cname
+칼럼 순서 수정 patch /api/rcolumn/1/order
+칼럼 삭제 delete /api/rcolumn/1
 
 - 카드
-카드 리스트 get /card/list
-카드 입력 post /card
-카드 내용 수정 patch /card/1/content
-카드 순서 수정 patch /card/1/order
-카드 삭제 delete /card/1
+카드 리스트 get /api/card/list
+카드 입력 post /api/card
+카드 내용 수정 patch /api/card/1/content
+카드 순서 수정 patch /api/card/1/order
+카드 삭제 delete /api/card/1
 
-lib/auth 추가
-로그인 인증 기능 추가
+### 진행할 것
+깃 태그 사용하기
+에러처리(throw -> try catch next(err))
+프로젝트 트리 구조 캡처

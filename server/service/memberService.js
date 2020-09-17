@@ -9,10 +9,10 @@ module.exports = {
         } else{
             // 세션 등록
             if(await auth.checkPW(req, res, next)){
-            session.addSession(req, res, next);
-            return next();
+                session.addSession(req, res, next);
+                return next();
             } else{
-            res.status(400).json({proc:false, msg: "아이디 또는 패스워드가 일치하지 않습니다."});
+                res.status(400).json({proc:false, msg: "아이디 또는 패스워드가 일치하지 않습니다."});
             }
         }
     }

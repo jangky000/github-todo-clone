@@ -9,7 +9,7 @@ export default class{
 
     async init(){
         const isLogin = await fetch_get('/api/member/isLogin'); // isLogin:true/false, id:user1
-        console.log(isLogin);
+        // console.log(isLogin);
         new Header(isLogin);
         new Main(isLogin);
     }

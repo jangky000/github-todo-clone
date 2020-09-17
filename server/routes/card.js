@@ -5,7 +5,7 @@ const Card = require('../model/card');
 const card = new Card();
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.get('/:colno', async function(req, res, next) {
   const result =  await card.list();
   res.status(200).json(result);
   // res.send('respond with a resource');

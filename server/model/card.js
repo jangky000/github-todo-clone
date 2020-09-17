@@ -11,9 +11,17 @@ class Card extends MySQL{
         });
     }
 
-    read(cardno){
+    // read(cardno){
+    //     return new Promise((resolve, reject) =>{
+    //         this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE cardno = ?", [cardno],function(err, rows, fields) {
+    //             resolve(rows)
+    //         });
+    //     })
+    // }
+
+    readByColno(colno){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE cardno = ?", [cardno],function(err, rows, fields) {
+            this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE colno = ?", [colno],function(err, rows, fields) {
                 resolve(rows)
             });
         })

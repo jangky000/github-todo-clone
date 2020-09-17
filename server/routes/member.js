@@ -35,7 +35,7 @@ router.post('/', async function(req, res, next) {
   } else if(result === 0){
     res.status(400).json({proc:false, msg: "회원 가입 실패"});
   } else {
-    res.status(500).json({proc:false, msg: "중복 회원 가입"});
+    res.status(409).json({proc:false, msg: "중복 회원 가입"});
   }
 });
 
