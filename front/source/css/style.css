@@ -7,7 +7,7 @@
 
 #main {
     flex: auto;
-    background-color: rgb(138, 137, 137);
+    /* background-color: rgb(138, 137, 137); */
 }
 
 .container{
@@ -46,22 +46,95 @@
 }
 
 .rcolumn{
-    min-width: 350px;
-    max-width: 350px;
-    border-width: 1px;
+    min-width: 300px;
+    max-width: 300px;
     border-radius: 6px;
     background-color: #eff1f3;
     margin-right: 16px;
-    overflow: hidden;
+    overflow: auto;
     border: 1px solid #e1e4e8;
+    display: flex;
+    flex-direction: column;
 }
+
+.add_rcolumn{
+    min-width: 300px;
+    max-width: 300px;
+    display: block;
+    height: fit-content;
+    border-radius: 6px;
+    border: 3px dashed #e1e4e8;
+    background-color: #ffffff;
+
+}
+
+.add_rcolumn button{
+    width: 100%;
+    padding: 40px 0;
+    background-color: #fff;
+    border: none;
+}
+.add_rcolumn button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.add_rcolumn button:focus{
+    outline: none;
+}
+
 
 .rcolumn_title {
     padding: 8px;
+}
 
+.rcolumn_title span{
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 50%;
+    background-color: rgb(212, 212, 212);
+    transform: translateY(-2px);
+}
+
+.rcolumn_title h2{
+    display: inline;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 .rcolumn_cards{
-    display: flex;
-    flex-direction: row;
+    flex: auto;
+    height: 0;
+}
+
+.draggable {
+    cursor: move;
+}
+
+.memo_card {
+    background-color: #fff;
+    margin: 6px 0;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 8px;
+    padding-left: 32px;
+    line-height: 1.5;
+}
+
+.memo_card:hover {
+    border-color: #d1d5da;
+    box-shadow: 0 1px 3px rgba(106,115,125,.3);
+}
+
+.card_content {
+    
+}
+
+.card_author::before {
+    font-size: 12px;
+    content: 'Add By ';
 }

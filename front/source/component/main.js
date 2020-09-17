@@ -26,10 +26,13 @@ export default class {
         divs += "<div class='rcolumn_divs'>";
         rcolumns.forEach(rcol => {
             divs += "<div class='rcolumn'>";
-            divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>${rcol.cname}</div>`;
+            divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>
+                        <span>${rcol.cards.length}</span>
+                        <h2>${rcol.cname}</h2>
+                    </div>`;
             divs += `<div class='rcolumn_cards'>`;
             rcol.cards.forEach(card => {
-                divs += `<div class='card'>`;
+                divs += `<div class='memo_card draggable'>`;
                 divs += `<div class='card_content'>${card.ccontent}</div>`;
                 divs += `<div class='card_author'>${card.id}</div>`;
                 divs += `</div>`;
@@ -37,9 +40,9 @@ export default class {
             divs += `</div>`;
             divs += "</div>";
         });
-        divs += "<div class='rcolumn'>";
-        divs += "칼럼 추가"
-        divs += "</div>";
+        divs += `<div class='add_rcolumn'>
+                    <button type='button' id='btn_addColumn'>+ 칼럼 추가</button>
+                </div>`;
         divs += "</div>";
         return divs;
     }
