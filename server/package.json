@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "dev": "concurrently --kill-others-on-fail \"npm run dev:server\" \"npm run dev:front\"",
-    "dev:front": "cd ../front && http-server -p 5000 --proxy http://localhost:3000/users",
+    "dev:front": "cd ../front && http-server -p 5000 --proxy http://localhost:3000/",
     "dev:server": "node ./bin/www"
   },
   "dependencies": {

@@ -130,9 +130,6 @@
     box-shadow: 0 1px 3px rgba(106,115,125,.3);
 }
 
-.card_content {
-    
-}
 
 .card_author::before {
     font-size: 12px;
