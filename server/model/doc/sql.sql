@@ -13,6 +13,7 @@ ENGINE=InnoDB
 ;
 
 INSERT INTO member(id, pw, mname) VALUES('user1', '1234', '사용자1');
+INSERT INTO member(id, pw, mname) VALUES('user2', '1234', '사용자2');
 SELECT memno, id, pw, mname FROM member WHERE memno = 1;
 SELECT  memno, id, pw, mname FROM member;
 UPDATE member SET pw = 'qwer' WHERE memno = 1;
@@ -74,3 +75,7 @@ SELECT cardno, memno, colno, ccontent, corder FROM card;
 UPDATE card SET ccontent = '일2' WHERE cardno = 1;
 UPDATE card SET corder = corder+1 WHERE cardno = 1;
 DELETE FROM card WHERE cardno = 1;
+
+INSERT INTO card(memno, colno, ccontent, corder) VALUES(2, 2, '일4', 1);
+INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 3, '일5', 2);
+INSERT INTO card(memno, colno, ccontent, corder) VALUES(2, 3, '일6', 3);
