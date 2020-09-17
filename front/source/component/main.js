@@ -24,10 +24,17 @@ export default class {
     rcolumnsDivs(rcolumns){
         let divs = "";
         divs += "<div class='rcolumn_divs'>";
-        rcolumns.forEach(e => {
+        rcolumns.forEach(rcol => {
             divs += "<div class='rcolumn'>";
-            divs += `<div class='rcolumn_title' data-colno='${e.colno}' data-corder='${e.corder}'>${e.cname}</div>`;
-            divs += `<div class='rcolumn_cards'>카드 공간</div>`;
+            divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>${rcol.cname}</div>`;
+            divs += `<div class='rcolumn_cards'>`;
+            rcol.cards.forEach(card => {
+                divs += `<div class='card'>`;
+                divs += `<div class='card_content'>${card.ccontent}</div>`;
+                divs += `<div class='card_author'>${card.id}</div>`;
+                divs += `</div>`;
+            });
+            divs += `</div>`;
             divs += "</div>";
         });
         divs += "<div class='rcolumn'>";

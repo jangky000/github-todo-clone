@@ -32,6 +32,9 @@ ENGINE=InnoDB
 
 
 INSERT INTO rcolumn(cname, corder) VALUES('할 일', 1);
+
+SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent FROM rcolumn r LEFT JOIN (SELECT cardno, id, colno, ccontent FROM card JOIN member ON card.memno = member.memno) c ON r.colno = c.colno;
+
 SELECT colno, cname, corder FROM rcolumn WHERE colno = 1;
 SELECT  colno, cname, corder FROM rcolumn;
 UPDATE rcolumn SET cname = 'qwer' WHERE memno = 1;
@@ -64,7 +67,9 @@ ENGINE=InnoDB
 ;
 
 INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 1, '일1', 1);
-SELECT cardno, memno, colno, ccontent, corder FROM card WHERE cardno = 1;
+INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 1, '일2', 2);
+INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 1, '일3', 3);
+SELECT cardno, memno, colno, ccontent, corder FROM card WHERE colno = 1;
 SELECT cardno, memno, colno, ccontent, corder FROM card;
 UPDATE card SET ccontent = '일2' WHERE cardno = 1;
 UPDATE card SET corder = corder+1 WHERE cardno = 1;

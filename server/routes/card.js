@@ -6,7 +6,7 @@ const card = new Card();
 
 /* GET users listing. */
 router.get('/:colno', async function(req, res, next) {
-  const result =  await card.list();
+  const result =  await card.listByColno(colno);
   res.status(200).json(result);
   // res.send('respond with a resource');
 });

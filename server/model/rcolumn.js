@@ -25,7 +25,15 @@ class Rcolumn extends MySQL{
                 // Connection is automatically released when query resolves
                 resolve(rows)
             });
-        })
+        });
+    }
+
+    listJoinCardMem(){
+        return new Promise((resolve, reject) =>{
+            this.pool.query("SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent FROM rcolumn r LEFT JOIN (SELECT cardno, id, colno, ccontent FROM card JOIN member ON card.memno = member.memno) c ON r.colno = c.colno;", function(err, rows, fields) {
+                resolve(rows)
+            });
+        });
     }
 
     update(rcolumnVO){

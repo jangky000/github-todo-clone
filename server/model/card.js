@@ -11,26 +11,28 @@ class Card extends MySQL{
         });
     }
 
-    // read(cardno){
-    //     return new Promise((resolve, reject) =>{
-    //         this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE cardno = ?", [cardno],function(err, rows, fields) {
-    //             resolve(rows)
-    //         });
-    //     })
-    // }
-
-    readByColno(colno){
+    readByCardno(cardno){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE colno = ?", [colno],function(err, rows, fields) {
+            this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE cardno = ?", [cardno],function(err, rows, fields) {
                 resolve(rows)
             });
         })
     }
 
-    list(){
+    
+
+    // list(){
+    //     return new Promise((resolve, reject) =>{
+    //         this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card", function(err, rows, fields) {
+    //             // Connection is automatically released when query resolves
+    //             resolve(rows)
+    //         });
+    //     })
+    // }
+
+    listByColno(colno){
         return new Promise((resolve, reject) =>{
-            this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card", function(err, rows, fields) {
-                // Connection is automatically released when query resolves
+            this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card WHERE colno = ?", [colno],function(err, rows, fields) {
                 resolve(rows)
             });
         })
