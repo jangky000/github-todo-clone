@@ -39,7 +39,8 @@ export default class {
     }
 
     async loginHandler(){
-        const login = await fetch_post('/api/member/login');
+        const data = {id:'user1', pw:'1234'};
+        const login = await fetch_post('/api/member/login', data);
         // console.log(login);
         location.reload();
     }

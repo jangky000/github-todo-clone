@@ -5,9 +5,11 @@ class Rcolumn extends MySQL{
         super();
     }
 
-    create(rcolumnVO){
-        this.pool.execute("INSERT INTO rcolumn(cname, corder) VALUES(?, ?, ?)", [columnVO.cname, columnVO.corder], function(err, result) {
-            console.log(result.affectedRows);
+    create(cname, corder){
+        return new Promise((resolve, reject) =>{
+            this.pool.execute("INSERT INTO rcolumn(cname, corder) VALUES(?, ?)", [cname, corder], function(err, result) {
+                resolve(result.affectedRows);
+            });
         });
     }
 
@@ -37,14 +39,18 @@ class Rcolumn extends MySQL{
     }
 
     update(rcolumnVO){
-        this.pool.execute("UPDATE rcolumn SET cname = ?, corder = ? WHERE colno = ?", [columnVO.cname, columnVO.corder, columnVO.colno], function(err, result) {
-            console.log(result.affectedRows);
+        return new Promise((resolve, reject) =>{
+            this.pool.execute("UPDATE rcolumn SET cname = ?, corder = ? WHERE colno = ?", [columnVO.cname, columnVO.corder, columnVO.colno], function(err, result) {
+                resolve(result.affectedRows);
+            });
         });
     }
 
     delete(colno){
-        this.pool.execute("DELETE FROM rcolumn WHERE colno = ?", [colno], function(err, result) {
-            console.log(result.affectedRows);
+        return new Promise((resolve, reject) =>{
+            this.pool.execute("DELETE FROM rcolumn WHERE colno = ?", [colno], function(err, result) {
+                resolve(result.affectedRows);
+            });
         });
     }
 }

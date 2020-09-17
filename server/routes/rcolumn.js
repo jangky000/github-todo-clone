@@ -1,5 +1,4 @@
 const express = require('express');
-const { map } = require('mysql2/lib/constants/charset_encodings');
 const router = express.Router();
 
 const rcolumnService = require('../service/rcolumnService.js');
@@ -17,8 +16,18 @@ router.get('/', async function(req, res, next) {
 });
 
 // insert
-router.post('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/', async function(req, res, next) {
+  console.log('칼럼 추가')
+  const cname = req.body.cname;
+  const corder = req.body.corder;
+  const result = await rcol.create(cname, corder);
+  if(result === 1){
+    res.status(201).json({proc:true, msg: "칼럼 추가 성공"});
+  } else if(result === 0){
+    res.status(400).json({proc:false, msg: "칼럼 추가 실패"});
+  } else {
+    res.status(409).json({proc:false, msg: "중복 칼럼 생성"});
+  }
 });
 
 // update
@@ -27,8 +36,17 @@ router.put('/', function(req, res, next) {
 });
 
 // delete
-router.delete('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.delete('/:colno', async function(req, res, next) {
+  console.log('칼럼 삭제')
+  const colno = req.params.colno;
+  const result = await rcol.delete(colno);
+  if(result === 1){
+    res.status(201).json({proc:true, msg: "칼럼 삭제 성공"});
+  } else if(result === 0){
+    res.status(400).json({proc:false, msg: "칼럼 삭제 실패"});
+  } else {
+    res.status(409).json({proc:false, msg: "중복 칼럼 삭제"});
+  }
 });
 
 
