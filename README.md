@@ -40,7 +40,19 @@
         - style loader, css loader 모듈
         - webpack plugin 모듈
         - lodash 모듈
-    - fetch
+        - babel 모듈
+    - component
+        - header
+            - logout API 연결
+            - 메뉴
+        - main
+            - login 창 및 API 연결
+            - column
+                - CRUD API 연결
+                - 드래그 앤 드롭
+            - card
+                - CRUD API 연결
+                - 드래그 앤 드롭
 
 ## Week3 개발 진행상황
 
@@ -75,19 +87,27 @@
 - front와 server에서 로그인 로그아웃 기능 연결
 
 ### day4
-
+- rcolumn 조회 API기능과 front 연동 및 레이아웃 설계
+- rcolumn, member, card를 조인하여 조회 API 기능 추가 front에 연동
+- rcolumn 조회 API json 전달 형식 수정 및 레이아웃 수정
+- rcolumn 디자인 수정
+- package.json 프론트 프록시 주소 변경
+- rcolumn 칼럼 삭제 API front 연결
 
 
 ### url 라우팅
 
 - member
-로그인 post /api/member/login
-로그아웃 get /api/member/logout
+로그인(패스워드 확인, 세션추가) post /api/member/login
+로그아웃(세션 삭제) get /api/member/logout
 
-아이디 중복 확인 get /api/member/1
-패스워드 일치 확인 get /api/member/password/1
+로그인 여부 확인 get /api/member/isLogin
+
+아이디 중복 확인 get /api/member/isDup/user1
 회원 가입 post /api/member
-회원 정보 수정 put /api/member/1 or patch /member/1/password
+회원 정보 수정 put /api/member/user1
+            patch /api/member/user1/pw
+            patch /api/member/user1/mname
 회원 탈퇴 delete /api/member/1
 
 - 칼럼
