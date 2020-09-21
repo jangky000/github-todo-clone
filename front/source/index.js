@@ -1,3 +1,4 @@
+/* eslint-disable */
 // 엔트리 파일
 // 번들로 변환해서 사용
 // npx webpack --entry ./source/index.js --output ./public/index_bundle.js
@@ -11,6 +12,6 @@
 // "proxy": "http://101.101.210.76:3000/"
 
 // 번들링 대상
-import Page from "./component/page.js"
-import css from './css/style.css'
+import Page from './component/page.js';
+import css from './css/style.css';
 new Page();

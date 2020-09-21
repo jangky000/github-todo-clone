@@ -107,8 +107,8 @@
 
 ### day1
 
-- front에 ESLint, Prettier 적용
--
+- front에 ESLint, Prettier, husky, lint-staged 적용
+- babel, polyfill, babel loader 설정
 
 ### url 라우팅
 
