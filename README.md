@@ -109,6 +109,7 @@
 
 - front에 ESLint, Prettier, husky, lint-staged 적용
 - babel, polyfill, babel loader 설정
+- inline source map 적용, webpack-dev-server 적용
 
 ### url 라우팅
 

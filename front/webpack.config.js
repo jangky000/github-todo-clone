@@ -9,31 +9,38 @@ const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    entry: "./source/index.js",
-    output: {
-        path: path.resolve(__dirname, "public"),
-        filename: 'index_bundle.js'
+  mode: 'development',
+  entry: './source/index.js',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true,
+    port: 5000,
+    proxy: {
+      '/api': 'http://localhost:3000',
     },
-    module: {
-        rules: [{
-                test: /\.css/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader", // 바벨 로더를 추가한다
-            }
-        ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './source/index.html',
-            filename: './index.html'
-        })
-    ]
-}
+  },
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'index_bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader', // 바벨 로더를 추가한다
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './source/index.html',
+      filename: './index.html',
+    }),
+  ],
+};
