@@ -1,4 +1,4 @@
-@import "reset.css";
+@import 'reset.css';
 
 #header {
     height: 80px;
@@ -10,27 +10,27 @@
     /* background-color: rgb(138, 137, 137); */
 }
 
-.container{
+.container {
     margin: 0 auto;
     width: 98%;
-    height:100%;
+    height: 100%;
 }
 
 /* header */
-.header_title{
+.header_title {
     float: left;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-.header_title h1{
+.header_title h1 {
     font-size: 24px;
     font-weight: bold;
     color: #ffffff;
 }
 
-.header_nav{
+.header_nav {
     float: right;
     height: 100%;
     display: flex;
@@ -38,14 +38,14 @@
 }
 
 /* main */
-.rcolumn_divs{
+.rcolumn_divs {
     overflow-x: auto;
     display: flex;
     height: calc(100% - 32px);
     margin: 16px;
 }
 
-.rcolumn{
+.rcolumn {
     min-width: 300px;
     max-width: 300px;
     border-radius: 6px;
@@ -57,7 +57,7 @@
     flex-direction: column;
 }
 
-.add_rcolumn{
+.add_rcolumn {
     min-width: 300px;
     max-width: 300px;
     display: block;
@@ -65,30 +65,28 @@
     border-radius: 6px;
     border: 3px dashed #e1e4e8;
     background-color: #ffffff;
-
 }
 
-.add_rcolumn button{
+.add_rcolumn button {
     width: 100%;
     padding: 40px 0;
     background-color: #fff;
     border: none;
 }
-.add_rcolumn button:hover{
+.add_rcolumn button:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.add_rcolumn button:focus{
+.add_rcolumn button:focus {
     outline: none;
 }
-
 
 .rcolumn_title {
     padding: 8px;
 }
 
-.rcolumn_title span{
+.rcolumn_title span {
     display: inline-block;
     text-align: center;
     width: 20px;
@@ -100,19 +98,15 @@
     transform: translateY(-2px);
 }
 
-.rcolumn_title h2{
+.rcolumn_title h2 {
     display: inline;
     font-weight: bold;
     margin-left: 10px;
 }
 
-.rcolumn_cards{
+.rcolumn_cards {
     flex: auto;
     height: 0;
-}
-
-.draggable {
-    cursor: move;
 }
 
 .memo_card {
@@ -123,13 +117,47 @@
     padding: 8px;
     padding-left: 32px;
     line-height: 1.5;
+    position: relative;
+}
+
+.draggable:hover {
+    cursor: move;
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+.init_animation {
+    animation: showUp 0.5s ease;
+}
+
+@keyframes showUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: none;
+    }
 }
 
 .memo_card:hover {
     border-color: #d1d5da;
-    box-shadow: 0 1px 3px rgba(106,115,125,.3);
+    box-shadow: 0 1px 3px rgba(106, 115, 125, 0.3);
 }
 
+.card_menu {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    display: inline;
+    font-size: 24px;
+}
+
+.card_menu:hover {
+    color: rgb(216, 216, 216);
+    cursor: pointer;
+}
 
 .card_author::before {
     font-size: 12px;

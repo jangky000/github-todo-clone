@@ -41,7 +41,8 @@ export default class {
                     </div>`;
             divs += `<div class='rcolumn_cards'>`;
             rcol.cards.forEach((card) => {
-                divs += `<div class='memo_card draggable' data-cardno='${card.cardno}'>`;
+                divs += `<div class='memo_card draggable' draggable="true" data-cardno='${card.cardno}'>`;
+                divs += `<div class='card_menu'>...</div>`;
                 divs += `<div class='card_content'>${card.ccontent}</div>`;
                 divs += `<div class='card_author'>${card.id}</div>`;
                 divs += `</div>`;
@@ -64,6 +65,16 @@ export default class {
         $All('.btn_deleteColumn').forEach((e) =>
             e.addEventListener('click', this.deleteColumnHandler)
         );
+        $All('.memo_card').forEach((e) => {
+            e.addEventListener('dragstart', this.dragStart);
+            e.addEventListener('dragend', this.dragEnd);
+        });
+        $All('.rcolumn_cards').forEach((e) => {
+            e.addEventListener('dragover', this.dragOver.bind(this));
+            // e.addEventListener('dragenter', this.dragEnter.bind(this));
+            // e.addEventListener('dragleave', this.dragLeave);
+            // e.addEventListener('drop', this.dragDrop);
+        });
     }
 
     async addColumnHandler() {
@@ -85,7 +96,7 @@ export default class {
             colno: colno,
             ccontent: '카드 추가 테스트',
             corder: 1,
-        }; // memno를 fk로 쓰지 않는 것이 좋겠다..
+        };
         const add = await fetch_post('/api/card/', data);
         alert(add);
         location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것
@@ -98,4 +109,74 @@ export default class {
         console.log(del);
         location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것
     }
+
+    dragStart(e) {
+        console.log('dragStart');
+        e.currentTarget.classList.add('dragging');
+        e.currentTarget.classList.remove('draggable');
+    }
+
+    dragEnd(e) {
+        console.log('dragEnd');
+        e.currentTarget.classList.remove('dragging');
+        e.currentTarget.classList.add('draggable');
+    }
+
+    dragOver(e) {
+        e.preventDefault(); // 이동 금지 커서 모양을 제거해 줌
+        // console.log('dragOver');
+        const dragEl = $('.dragging');
+        const afterElement = this.getDragAfterElement(
+            e.currentTarget,
+            e.clientY
+        );
+        if (
+            e.currentTarget.contains(dragEl) &&
+            dragEl.nextSibling == afterElement
+        ) {
+            return;
+        }
+        dragEl.classList.add('init_animation');
+        if (afterElement) {
+            e.currentTarget.insertBefore(dragEl, afterElement);
+        } else {
+            e.currentTarget.appendChild(dragEl);
+        }
+        setTimeout(() => {
+            dragEl.classList.remove('init_animation');
+        }, 1000);
+    }
+
+    getDragAfterElement(container, y) {
+        const draggableElements = [
+            ...$All('.draggable:not(.dragging)', container),
+        ];
+        return draggableElements.reduce(
+            (closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            },
+            { offset: Number.NEGATIVE_INFINITY }
+        ).element;
+    }
+    // dragEnter(e) {
+    //     console.log(e);
+    //     console.log('dragEnter');
+    // }
+
+    // dragLeave(e) {
+    //     console.log(e);
+    //     console.log('dragLeave');
+    // }
+
+    // dragDrop(e) {
+    //     e.preventDefault();
+    //     console.log(e);
+    //     console.log('dragDrop');
+    // }
 }
