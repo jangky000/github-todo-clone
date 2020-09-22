@@ -34,12 +34,16 @@
         "core-js": "^3.6.5",
         "lodash": "^4.17.20"
     },
-    "lint-staged": {
-        "*.js": "eslint --fix"
-    },
     "husky": {
         "hooks": {
-            "pre-commit": ""
+            "pre-commit": "lint-staged"
         }
+    },
+    "lint-staged": {
+        "*.{js,css}": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ]
     }
 }
