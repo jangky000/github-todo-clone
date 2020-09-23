@@ -6,6 +6,9 @@ import {
     fetch_delete,
 } from '../utils/tools.js';
 
+import Card from './card.js';
+const cardObj = new Card();
+
 export default class {
     constructor(isLogin) {
         this.isLogin = isLogin;
@@ -15,11 +18,11 @@ export default class {
     async init() {
         await this.render();
         this.addEvent();
+        cardObj.addEvent();
     }
 
     async render() {
         const rcolumns = await fetch_get('/api/rcolumn/');
-        // console.log(rcolumns);
         const divs = this.rcolumnsDivs(rcolumns);
         const main_layer = `
             <div class="container">
@@ -33,7 +36,7 @@ export default class {
         let divs = '';
         divs += "<div class='rcolumn_divs'>";
         rcolumns.forEach((rcol) => {
-            divs += "<div class='rcolumn'>";
+            divs += `<div class='rcolumn' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>`;
             divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>
                         <span>${rcol.cards.length}</span>
                         <h2>${rcol.cname}</h2>
@@ -41,11 +44,7 @@ export default class {
                     </div>`;
             divs += `<div class='rcolumn_cards'>`;
             rcol.cards.forEach((card) => {
-                divs += `<div class='memo_card draggable' draggable="true" data-cardno='${card.cardno}'>`;
-                divs += `<div class='card_menu'>...</div>`;
-                divs += `<div class='card_content'>${card.ccontent}</div>`;
-                divs += `<div class='card_author'>${card.id}</div>`;
-                divs += `</div>`;
+                divs += cardObj.render(card);
             });
             divs += `</div>`;
             divs += '</div>';
@@ -59,22 +58,10 @@ export default class {
 
     addEvent() {
         $('#btn_addColumn').addEventListener('click', this.addColumnHandler);
-        $All('.btn_addCardForm').forEach((e) =>
-            e.addEventListener('click', this.addCardFormHandler.bind(this))
-        );
+
         $All('.btn_deleteColumn').forEach((e) =>
             e.addEventListener('click', this.deleteColumnHandler)
         );
-        $All('.memo_card').forEach((e) => {
-            e.addEventListener('dragstart', this.dragStart);
-            e.addEventListener('dragend', this.dragEnd);
-        });
-        $All('.rcolumn_cards').forEach((e) => {
-            e.addEventListener('dragover', this.dragOver.bind(this));
-            // e.addEventListener('dragenter', this.dragEnter.bind(this));
-            // e.addEventListener('dragleave', this.dragLeave);
-            // e.addEventListener('drop', this.dragDrop);
-        });
     }
 
     async addColumnHandler() {
@@ -85,21 +72,7 @@ export default class {
         };
         const add = await fetch_post('/api/rcolumn/', data);
         console.log(add);
-        location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것
-    }
-
-    async addCardFormHandler(e) {
-        alert('카드 등록');
-        const colno = e.currentTarget.parentElement.dataset.colno;
-        const data = {
-            memno: this.isLogin.memno,
-            colno: colno,
-            ccontent: '카드 추가 테스트',
-            corder: 1,
-        };
-        const add = await fetch_post('/api/card/', data);
-        alert(add);
-        location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것
+        location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것 // appendchild
     }
 
     async deleteColumnHandler(e) {
@@ -109,74 +82,4 @@ export default class {
         console.log(del);
         location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것
     }
-
-    dragStart(e) {
-        console.log('dragStart');
-        e.currentTarget.classList.add('dragging');
-        e.currentTarget.classList.remove('draggable');
-    }
-
-    dragEnd(e) {
-        console.log('dragEnd');
-        e.currentTarget.classList.remove('dragging');
-        e.currentTarget.classList.add('draggable');
-    }
-
-    dragOver(e) {
-        e.preventDefault(); // 이동 금지 커서 모양을 제거해 줌
-        // console.log('dragOver');
-        const dragEl = $('.dragging');
-        const afterElement = this.getDragAfterElement(
-            e.currentTarget,
-            e.clientY
-        );
-        if (
-            e.currentTarget.contains(dragEl) &&
-            dragEl.nextSibling == afterElement
-        ) {
-            return;
-        }
-        dragEl.classList.add('init_animation');
-        if (afterElement) {
-            e.currentTarget.insertBefore(dragEl, afterElement);
-        } else {
-            e.currentTarget.appendChild(dragEl);
-        }
-        setTimeout(() => {
-            dragEl.classList.remove('init_animation');
-        }, 1000);
-    }
-
-    getDragAfterElement(container, y) {
-        const draggableElements = [
-            ...$All('.draggable:not(.dragging)', container),
-        ];
-        return draggableElements.reduce(
-            (closest, child) => {
-                const box = child.getBoundingClientRect();
-                const offset = y - box.top - box.height / 2;
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    return closest;
-                }
-            },
-            { offset: Number.NEGATIVE_INFINITY }
-        ).element;
-    }
-    // dragEnter(e) {
-    //     console.log(e);
-    //     console.log('dragEnter');
-    // }
-
-    // dragLeave(e) {
-    //     console.log(e);
-    //     console.log('dragLeave');
-    // }
-
-    // dragDrop(e) {
-    //     e.preventDefault();
-    //     console.log(e);
-    //     console.log('dragDrop');
-    // }
 }

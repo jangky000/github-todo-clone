@@ -34,7 +34,10 @@ ENGINE=InnoDB
 
 INSERT INTO rcolumn(cname, corder) VALUES('할 일', 1);
 
-SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent FROM rcolumn r LEFT JOIN (SELECT cardno, id, colno, ccontent FROM card JOIN member ON card.memno = member.memno) c ON r.colno = c.colno;
+SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent FROM rcolumn r 
+LEFT JOIN (SELECT cardno, id, colno, ccontent FROM card JOIN member ON card.memno = member.memno) c ON r.colno = c.colno;
+
+
 
 SELECT colno, cname, corder FROM rcolumn WHERE colno = 1;
 SELECT  colno, cname, corder FROM rcolumn;
@@ -79,3 +82,6 @@ DELETE FROM card WHERE cardno = 1;
 INSERT INTO card(memno, colno, ccontent, corder) VALUES(2, 2, '일4', 1);
 INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 3, '일5', 2);
 INSERT INTO card(memno, colno, ccontent, corder) VALUES(2, 3, '일6', 3);
+
+SELECT c1.cardno, c1.memno, c1.colno, c1.ccontent, c2.ccontent FROM card c1 LEFT JOIN card c2 ON c1.corder = c2.cardno;
+

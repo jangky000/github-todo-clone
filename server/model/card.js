@@ -60,6 +60,16 @@ class Card extends MySQL {
     );
   }
 
+  updateOrder(cardno, corder, colno) {
+    const query = "UPDATE card SET corder = ?, colno = ? WHERE cardno = ?";
+    const params = [corder, colno, cardno];
+    return new Promise((resolve, reject) => {
+      this.pool.execute(query, params, function (err, result) {
+        resolve(result.affectedRows);
+      });
+    });
+  }
+
   delete(cardno) {
     this.pool.execute("DELETE FROM card WHERE cardno = ?", [cardno], function (
       err,
