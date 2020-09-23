@@ -17,7 +17,8 @@ export const fetch_post = async (url, data) => {
     });
     const body = await response.json();
     // console.log(body);
-    alert(JSON.stringify(body));
+    // alert(JSON.stringify(body));
+    return body;
 };
 
 export const fetch_delete = async (url) => {
