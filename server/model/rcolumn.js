@@ -39,14 +39,25 @@ class Rcolumn extends MySQL {
     });
   }
 
-  listJoinCardMem() {
+  listJoinCardMem(memno) {
     return new Promise((resolve, reject) => {
-      this.pool.query(
-        "SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent FROM rcolumn r LEFT JOIN (SELECT cardno, id, colno, ccontent FROM card JOIN member ON card.memno = member.memno) c ON r.colno = c.colno;",
-        function (err, rows, fields) {
-          resolve(rows);
-        }
-      );
+      const query = `
+      SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent, r.corder, c.corder
+      FROM rcolumn r 
+      LEFT JOIN 
+        (
+          SELECT cardno, card.memno, colno, member.id, ccontent, corder
+          FROM card 
+          JOIN member 
+          ON card.memno = member.memno
+          WHERE member.memno = ?
+        ) c 
+      ON r.colno = c.colno
+      ORDER BY r.corder DESC, c.corder DESC
+      `;
+      this.pool.query(query, [memno], function (err, rows, fields) {
+        resolve(rows);
+      });
     });
   }
 

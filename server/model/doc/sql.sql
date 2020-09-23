@@ -83,5 +83,72 @@ INSERT INTO card(memno, colno, ccontent, corder) VALUES(2, 2, '일4', 1);
 INSERT INTO card(memno, colno, ccontent, corder) VALUES(1, 3, '일5', 2);
 INSERT INTO card(memno, colno, ccontent, corder) VALUES(2, 3, '일6', 3);
 
-SELECT c1.cardno, c1.memno, c1.colno, c1.ccontent, c2.ccontent FROM card c1 LEFT JOIN card c2 ON c1.corder = c2.cardno;
+
+with recursive cte (cardno, ccontent, corder) as (
+  select     cardno,
+             ccontent,
+             corder
+  from       card
+  where      corder = NULL
+  union all
+  select     p.cardno,
+             p.ccontent,
+             p.corder
+  from       card p
+  inner join cte
+          on p.corder = cte.cardno
+)
+select * from cte;
+
+
+# 재귀적? 계층적?
+select  cardno,
+			memno,
+			colno,
+        ccontent,
+        corder 
+from    (select * from card
+         order BY colno, corder, cardno) cards_sorted,
+        (select @pv := '0') initialisation
+where   find_in_set(corder, @pv)
+and     length(@pv := concat(@pv, ',', cardno))
+
+# 계층 조회 최종 쿼리
+SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent 
+FROM rcolumn r 
+LEFT JOIN 
+(
+	SELECT cardno, id, colno, ccontent 
+	FROM (
+		select  cardno,
+				memno,
+				colno,
+	        ccontent,
+	        corder 
+		from    (select * from card
+		         order BY colno, corder, cardno) cards_sorted,
+		        (select @pv := '0') initialisation
+		where   find_in_set(corder, @pv)
+		and     length(@pv := concat(@pv, ',', cardno))
+	) card
+	JOIN member 
+	ON card.memno = member.memno
+) c 
+ON r.colno = c.colno;
+
+
+
+# 다시 복구
+SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent, r.corder, c.corder
+FROM rcolumn r 
+LEFT JOIN 
+	(
+		SELECT cardno, card.memno, colno, member.id, ccontent, corder
+		FROM card 
+		JOIN member 
+		ON card.memno = member.memno
+		WHERE member.memno = 1
+	) c 
+ON r.colno = c.colno
+ORDER BY r.corder DESC, c.corder DESC;
 

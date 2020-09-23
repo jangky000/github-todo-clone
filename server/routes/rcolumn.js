@@ -9,7 +9,8 @@ const rcol = new Rcolumn();
 /* GET users listing. */
 /* rcolumn 과 card 조인 결과 조회 */
 router.get("/", async function (req, res, next) {
-  const result = await rcol.listJoinCardMem();
+  console.log(req.session.memno);
+  const result = await rcol.listJoinCardMem(req.session.memno);
   const parsed = rcolumnService.parseJoinResult(result);
   res.status(200).json(parsed);
   // res.send('respond with a resource');
