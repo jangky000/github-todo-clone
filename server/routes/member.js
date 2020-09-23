@@ -21,13 +21,6 @@ router.get("/isLogin", function (req, res, next) {
   });
 });
 
-/* 아이디 조회 */
-// router.get("/:id", async function (req, res, next) {
-//   // 접근 제한
-//   const result = await mem.readById(req.params.id);
-//   res.status(200).json(result);
-// });
-
 /* 회원 추가 */
 router.post("/", async function (req, res, next) {
   const id = req.body.id;

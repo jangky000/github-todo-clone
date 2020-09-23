@@ -21,7 +21,7 @@ class Card extends MySQL {
       `;
       const params = [memno, colno, ccontent, corder];
       this.pool.execute(query, params, function (err, result) {
-        resolve(result.affectedRows);
+        resolve(result.insertId);
       });
     });
   }

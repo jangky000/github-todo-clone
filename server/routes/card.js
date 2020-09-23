@@ -13,9 +13,11 @@ router.post("/", async function (req, res, next) {
   const colno = req.body.colno;
   const ccontent = req.body.ccontent;
   const newCorder = await card.getNewCorder(colno, memno);
-  const result = await card.create(memno, colno, ccontent, newCorder);
-  if (result === 1) {
-    res.status(201).json({ proc: true, msg: "카드 생성 성공" });
+  const insertId = await card.create(memno, colno, ccontent, newCorder);
+  if (insertId) {
+    res
+      .status(201)
+      .json({ proc: true, msg: "카드 생성 성공", insertId: insertId });
   } else {
     res.status(400).json({ proc: false, msg: "카드 생성 실패" });
   }

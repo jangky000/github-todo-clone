@@ -28,7 +28,7 @@ export default class {
         divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>`;
         divs += `<span>${rcol.cards.length}</span>`;
         divs += `<h2>${rcol.cname}</h2>`;
-        divs += `<button type='button' class='btn_deleteColumn btn_columnTitle'>x</button><button type='button' class='btn_addCardForm btn_columnTitle'>+</button>`;
+        divs += `<button type='button' class='btn_deleteColumn btn_columnTitle'>x</button><button type='button' class='btn_showCardInput btn_columnTitle'>+</button>`;
         divs += this.createCardForm();
         divs += `</div>`;
         divs += `<div class='rcolumn_cards'>`;
@@ -62,8 +62,8 @@ export default class {
             e.addEventListener('click', this.deleteColumnHandler)
         );
 
-        $All('.btn_addCardForm').forEach((e) =>
-            e.addEventListener('click', this.addCardForm)
+        $All('.btn_showCardInput').forEach((e) =>
+            e.addEventListener('click', this.showCardInput)
         );
 
         $All('.createCardText').forEach((e) =>
@@ -115,7 +115,7 @@ export default class {
         currTarget.closest('.rcolumn').remove();
     }
 
-    addCardForm(e) {
+    showCardInput(e) {
         const currRcolTitle = e.currentTarget.closest('.rcolumn_title');
         $('.createCardForm', currRcolTitle).classList.toggle('hidden');
     }
@@ -139,16 +139,35 @@ export default class {
     async cardCreate(e) {
         const currRcolTitle = e.currentTarget.closest('.rcolumn_title');
         const text = $('.createCardText', currRcolTitle).value;
-        const colno = currRcolTitle.closest('.rcolumn').dataset.colno;
+        const currRcolumn = currRcolTitle.closest('.rcolumn');
+        const colno = currRcolumn.dataset.colno;
         const data = {
             memno: this.isLogin.memno,
             colno: colno,
             ccontent: text,
             corder: 0,
         };
-        const add = await fetch_post('/api/card/', data);
-        console.log(add);
-        location.reload();
+        const result = await fetch_post('/api/card/', data);
+        console.log(result);
+
+        // 입력 창 닫기
+        const createCardForm = $('.createCardForm', currRcolTitle);
+        if (!createCardForm.classList.contains('hidden')) {
+            createCardForm.classList.toggle('hidden');
+        }
+
+        // 숫자 업데이트
+        const span = $('span', currRcolTitle);
+        span.innerHTML = parseInt(span.textContent) + 1;
+
+        // 카드 추가
+        const new_cardno = result.insertId;
+        const html = cardObj.render({
+            cardno: new_cardno,
+            ccontent: text,
+            id: this.isLogin.id,
+        });
+        $('.rcolumn_cards', currRcolumn).insertAdjacentHTML('afterbegin', html); // 추가
     }
 
     cardCancel(e) {
