@@ -1,4 +1,4 @@
-import { $, fetch_get, fetch_post } from '../utils/tools.js';
+import { $, fetch_get } from '../utils/tools.js';
 
 export default class {
     constructor(isLogin) {
@@ -13,7 +13,7 @@ export default class {
         // console.log(isLogin);
         const sw = isLogin.isLogin
             ? `<span>${isLogin.id}</span><button type="button" id="btn_logout">로그아웃</button>`
-            : `<button type="button" id="btn_login">로그인</button>`;
+            : ``;
         const header_layer = `
             <div class="container flex_header">
                 <div class="header_title"><h1>To Do 서비스</h1></div>
@@ -30,7 +30,7 @@ export default class {
         if (isLogin.isLogin) {
             $('#btn_logout').addEventListener('click', this.logoutHandler);
         } else {
-            $('#btn_login').addEventListener('click', this.loginHandler);
+            // $('#btn_login').addEventListener('click', this.loginHandler);
         }
     }
 
@@ -40,10 +40,10 @@ export default class {
         location.reload();
     }
 
-    async loginHandler() {
-        const data = { id: 'user1', pw: '1234' };
-        const login = await fetch_post('/api/member/login', data);
-        console.log(login);
-        location.reload();
-    }
+    // async loginHandler() {
+    //     const data = { id: 'user1', pw: '1234' };
+    //     const login = await fetch_post('/api/member/login', data);
+    //     console.log(login);
+    //     location.reload();
+    // }
 }
