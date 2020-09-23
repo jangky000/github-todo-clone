@@ -1,14 +1,14 @@
 import { $, fetch_get } from '../utils/tools.js';
 
 import Rcolumn from './rcolumn.js';
-const rcolObj = new Rcolumn();
 
 import Login from './login.js';
-const loginObj = new Login();
 
 export default class {
     constructor(isLogin) {
         this.isLogin = isLogin;
+        this.rcolObj = new Rcolumn(isLogin);
+        this.loginObj = new Login();
         this.init();
     }
 
@@ -20,8 +20,8 @@ export default class {
     async render() {
         const rcolumns = await fetch_get('/api/rcolumn/');
         const divs = this.isLogin.isLogin
-            ? rcolObj.render(rcolumns)
-            : loginObj.render();
+            ? this.rcolObj.render(rcolumns)
+            : this.loginObj.render();
         const main_layer = `
             <div class="container">
                 ${divs}
@@ -32,9 +32,9 @@ export default class {
 
     addEvent() {
         if (this.isLogin.isLogin) {
-            rcolObj.addEvent();
+            this.rcolObj.addEvent();
         } else {
-            loginObj.addEvent();
+            this.loginObj.addEvent();
         }
     }
 }

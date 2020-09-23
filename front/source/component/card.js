@@ -1,4 +1,4 @@
-import { $, $All, fetch_post, fetch_put } from '../utils/tools.js';
+import { $, $All, fetch_put } from '../utils/tools.js';
 
 export default class {
     constructor() {}
@@ -14,10 +14,6 @@ export default class {
     }
 
     addEvent() {
-        $All('.btn_addCardForm').forEach((e) =>
-            e.addEventListener('click', this.addCardFormHandler.bind(this))
-        );
-
         $All('.memo_card').forEach((e) => {
             e.addEventListener('dragstart', this.dragStart);
             e.addEventListener('dragend', this.dragEnd);
@@ -26,20 +22,6 @@ export default class {
         $All('.rcolumn_cards').forEach((e) => {
             e.addEventListener('dragover', this.dragOver.bind(this));
         });
-    }
-
-    async addCardFormHandler(e) {
-        alert('카드 등록');
-        const colno = e.currentTarget.parentElement.dataset.colno;
-        const data = {
-            memno: this.isLogin.memno,
-            colno: colno,
-            ccontent: '카드 추가 테스트',
-            corder: 1,
-        };
-        const add = await fetch_post('/api/card/', data);
-        alert(add);
-        location.reload(); // 페이지 리로드 하지 말고 업데이트 하도록 할 것
     }
 
     dragStart(e) {

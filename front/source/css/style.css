@@ -16,6 +16,10 @@
     height: 100%;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* header */
 .header_title {
     float: left;
@@ -97,7 +101,7 @@
     border-radius: 6px;
     background-color: #eff1f3;
     margin-right: 16px;
-    overflow: auto;
+    /* overflow: auto; */
     border: 1px solid #e1e4e8;
     display: flex;
     flex-direction: column;
@@ -150,11 +154,81 @@
     margin-left: 10px;
 }
 
+.rcolumn_title .btn_columnTitle {
+    all: unset;
+    float: right;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.rcolumn_title .btn_columnTitle:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .rcolumn_cards {
     flex: auto;
+    overflow: auto;
     height: 0;
 }
 
+.createCardForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.createCardForm .createCardText {
+    flex: auto;
+    display: block;
+    width: 95%;
+    margin: 6px auto;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.createCardForm div {
+    display: flex;
+}
+
+.btn_cardCreate {
+    flex: auto;
+    color: #ffffff;
+    background-color: #2fa14f;
+    border-radius: 6px;
+    padding: 5px 16px;
+    border: none;
+    margin-right: 6px;
+}
+
+.btn_cardCreate:hover {
+    cursor: pointer;
+    background-color: #2a9147;
+    box-shadow: 0 1px 3px rgba(106, 115, 125, 0.3);
+}
+
+.btn_cardDisabled {
+    background-color: #bfddc7 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+.btn_cardCancel {
+    flex: auto;
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 5px 16px;
+    border: none;
+    border: 1px solid #a7a7a7;
+}
+
+.btn_cardCancel:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    box-shadow: 0 1px 3px rgba(106, 115, 125, 0.3);
+}
+
+/* card */
 .memo_card {
     background-color: #fff;
     margin: 6px 0;

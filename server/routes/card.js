@@ -37,39 +37,39 @@ router.post("/", async function (req, res, next) {
 
 // update
 router.put("/", async function (req, res, next) {
-  res.status(200).json(req.body);
-  return;
-  // if (req.body.fromNextCardno) {
-  //   const currCardVO = await card.readByCardno(req.body.currCardno);
-  //   await card.updateOrder(
-  //     req.body.fromNextCardno,
-  //     currCardVO.corder,
-  //     currCardVO.colno
-  //   );
-  // }
+  // res.status(200).json(req.body);
+  // return;
+  if (req.body.fromNextCardno) {
+    const currCardVO = await card.readByCardno(req.body.currCardno);
+    await card.updateOrder(
+      req.body.fromNextCardno,
+      currCardVO.corder,
+      currCardVO.colno
+    );
+  }
 
-  // if (req.body.toNextCardno) {
-  //   const nextCardVO = await card.readByCardno(req.body.toNextCardno);
-  //   await card.updateOrder(
-  //     req.body.toNextCardno,
-  //     req.body.currCardno,
-  //     req.body.toColno
-  //   );
-  //   await card.updateOrder(
-  //     req.body.currCardno,
-  //     nextCardVO.corder,
-  //     req.body.toColno
-  //   );
-  // } else if (req.body.toPrevCardno) {
-  //   await card.updateOrder(
-  //     req.body.currCardno,
-  //     req.body.toPrevCardno,
-  //     req.body.toColno
-  //   );
-  // } else {
-  //   await card.updateOrder(req.body.currCardno, 0, req.body.toColno);
-  // }
-  // res.status(201).json({ proc: true, msg: "카드 생성 성공" });
+  if (req.body.toNextCardno) {
+    const nextCardVO = await card.readByCardno(req.body.toNextCardno);
+    await card.updateOrder(
+      req.body.toNextCardno,
+      req.body.currCardno,
+      req.body.toColno
+    );
+    await card.updateOrder(
+      req.body.currCardno,
+      nextCardVO.corder,
+      req.body.toColno
+    );
+  } else if (req.body.toPrevCardno) {
+    await card.updateOrder(
+      req.body.currCardno,
+      req.body.toPrevCardno,
+      req.body.toColno
+    );
+  } else {
+    await card.updateOrder(req.body.currCardno, 0, req.body.toColno);
+  }
+  res.status(201).json({ proc: true, msg: "카드 생성 성공" });
 });
 
 // delete
