@@ -108,11 +108,14 @@ export default class {
     }
 
     async deleteColumnHandler(e) {
-        const currTarget = e.currentTarget;
-        const colno = currTarget.closest('.rcolumn').dataset.colno;
-        await fetch_delete(`/api/rcolumn/${colno}`);
-
-        currTarget.closest('.rcolumn').remove();
+        const sw = confirm('선택한 칼럼을 삭제하시겠습니까?');
+        if (sw) {
+            const rcolumn = e.currentTarget.closest('.rcolumn');
+            const colno = rcolumn.dataset.colno;
+            const result = await fetch_delete(`api/rcolumn/${colno}`);
+            console.log(result);
+            rcolumn.remove();
+        }
     }
 
     showCardInput(e) {
