@@ -46,7 +46,7 @@ export default class {
         divs += `<button type='button' class='menu_close'>x</button>`;
         divs += `</div>`;
         divs += `<ul class='menu_list'>`;
-        divs += `<li>OOO 님 반갑습니다.</li>`;
+        divs += `<li><strong>${this.isLogin.id}</strong> 님 반갑습니다.</li>`;
         divs += `<li><span class='spn_logout'>로그아웃</span></li>`;
         divs += `</ul>`;
         divs += `<div class='menu_title'><h2>Activity</h2></div>`;

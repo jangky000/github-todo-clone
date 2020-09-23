@@ -74,17 +74,17 @@
     height: calc(100% - 80px); /* for IE */
 }
 
-.menu_layer .menu_title {
+.menu_title {
     position: relative;
     padding: 10px;
     background-color: rgb(212, 212, 212);
 }
 
-.menu_layer .menu_title h2 {
+.menu_title h2 {
     font-weight: bold;
 }
 
-.menu_layer .menu_title button {
+.menu_title button {
     all: unset;
     position: absolute;
     font-size: 20px;
@@ -93,14 +93,24 @@
     right: 20px;
 }
 
-.menu_layer .menu_title button:hover {
+.menu_title button:hover {
     cursor: pointer;
     color: #b4b4b4;
 }
 
-.menu_layer .menu_list li {
+.menu_list li {
     padding: 10px;
     border-bottom: 1px solid #e4e4e4;
+}
+
+.menu_list strong {
+    font-weight: bold;
+    color: #003cff;
+}
+
+.menu_list strong:hover {
+    cursor: pointer;
+    color: #b3c4ff;
 }
 
 .spn_logout:hover {

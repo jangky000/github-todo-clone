@@ -42,7 +42,7 @@ class Rcolumn extends MySQL {
   listJoinCardMem(memno) {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent, r.corder, c.corder
+      SELECT r.colno, r.cname, c.cardno, c.id, c.ccontent
       FROM rcolumn r 
       LEFT JOIN 
         (
@@ -87,5 +87,3 @@ class Rcolumn extends MySQL {
 }
 
 module.exports = Rcolumn;
-
-// const columnVO = {cname: '할 일', corder: 1}

@@ -4,16 +4,25 @@ class Card extends MySQL {
   constructor() {
     super();
   }
-
+  getNewCorder(colno, memno) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT MAX(corder) + 1 AS new_corder FROM card WHERE colno = ? AND memno = ?`;
+      const params = [colno, memno];
+      this.pool.query(query, params, function (err, rows, fields) {
+        resolve(rows[0].new_corder);
+      });
+    });
+  }
   create(memno, colno, ccontent, corder) {
     return new Promise((resolve, reject) => {
-      this.pool.execute(
-        "INSERT INTO card(memno, colno, ccontent, corder) VALUES(?, ?, ?, ?)",
-        [memno, colno, ccontent, corder],
-        function (err, result) {
-          resolve(result.affectedRows);
-        }
-      );
+      const query = `
+      INSERT INTO card(memno, colno, ccontent, corder)
+      VALUES(?, ?, ?, ?)
+      `;
+      const params = [memno, colno, ccontent, corder];
+      this.pool.execute(query, params, function (err, result) {
+        resolve(result.affectedRows);
+      });
     });
   }
 
@@ -29,14 +38,24 @@ class Card extends MySQL {
     });
   }
 
-  // list(){
-  //     return new Promise((resolve, reject) =>{
-  //         this.pool.query("SELECT cardno, memno, colno, ccontent, corder FROM card", function(err, rows, fields) {
-  //             // Connection is automatically released when query resolves
-  //             resolve(rows)
-  //         });
-  //     })
-  // }
+  getCorderMid(toPrevCardno, toNextCardno) {
+    return new Promise((resolve, reject) => {
+      let query, params;
+      if (!toPrevCardno) {
+        query = `SELECT corder+1 AS corder_mid FROM card WHERE cardno = ?`;
+        params = [toNextCardno];
+      } else if (!toNextCardno) {
+        query = `SELECT corder/2 AS corder_mid FROM card WHERE cardno = ?`;
+        params = [toPrevCardno];
+      } else {
+        query = `SELECT avg(corder) AS corder_mid FROM card WHERE cardno = ? OR cardno = ?`;
+        params = [toPrevCardno, toNextCardno];
+      }
+      this.pool.query(query, params, function (err, rows, fields) {
+        resolve(rows[0].corder_mid);
+      });
+    });
+  }
 
   listByColno(colno) {
     return new Promise((resolve, reject) => {
@@ -61,8 +80,8 @@ class Card extends MySQL {
   }
 
   updateOrder(cardno, corder, colno) {
-    const query = "UPDATE card SET corder = ?, colno = ? WHERE cardno = ?";
-    const params = [corder, colno, cardno];
+    const query = "UPDATE card SET colno = ?, corder = ? WHERE cardno = ?";
+    const params = [colno, corder, cardno];
     return new Promise((resolve, reject) => {
       this.pool.execute(query, params, function (err, result) {
         resolve(result.affectedRows);

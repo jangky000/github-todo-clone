@@ -152,3 +152,17 @@ LEFT JOIN
 ON r.colno = c.colno
 ORDER BY r.corder DESC, c.corder DESC;
 
+
+# 앞 뒤 row 두 개 찾기
+SELECT avg(corder) AS corder_mid FROM card WHERE cardno = 1 OR cardno = 2
+
+# 앞이 없을 때
+SELECT corder+1 AS corder_mid FROM card WHERE cardno = 3
+
+# 뒤가 없을 때
+SELECT corder/2 AS corder_mid FROM card WHERE cardno = 1
+
+# 칼럼에서 가장 큰 순번 + 1
+
+SELECT MAX(corder) + 1 AS new_corder FROM card WHERE colno = 1 AND memno = 1;
+

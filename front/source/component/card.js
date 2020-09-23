@@ -68,27 +68,25 @@ export default class {
         const fromColno = dragEl.parentElement.parentElement.dataset.colno;
         const toColno = targetCol.parentElement.dataset.colno;
         const currCardno = dragEl.dataset.cardno;
-        const fromNextCardno = dragEl.nextSibling
-            ? dragEl.nextSibling.dataset.cardno
-            : null;
         const toNextCardno = afterElement ? afterElement.dataset.cardno : null;
-        console.log(afterElement);
+        // console.log(afterElement);
         const toPrevCardno = afterElement
-            ? afterElement.previousSibling.dataset.cardno
-            : targetCol.lastChild;
-        console.log(targetCol.lastChild);
+            ? afterElement.previousSibling
+                ? afterElement.previousSibling.dataset.cardno
+                : null
+            : targetCol.lastChild.dataset.cardno;
+        // console.log(targetCol.lastChild);
         console.log(
             `${fromColno} 칼럼의 ${currCardno}를 ${toColno} 칼럼으로 이동`
         );
-        console.log(`현재 카드: ${currCardno}, 다음 카드: ${toNextCardno}`);
         const data = {
             fromColno: fromColno,
             toColno: toColno,
             currCardno: currCardno,
-            fromNextCardno: fromNextCardno,
             toNextCardno: toNextCardno,
             toPrevCardno: toPrevCardno,
         };
+        console.log(data);
         fetch_put('/api/card', data);
     }
 

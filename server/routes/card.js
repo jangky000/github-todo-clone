@@ -14,62 +14,31 @@ const card = new Card();
 
 // insert
 router.post("/", async function (req, res, next) {
-  // console.log(req.session);
-  // res.status(401).json(JSON.stringify(req.session));
-  // return;
   if (!req.body.memno) {
     res.status(401).json({ proc: false, msg: "로그인 필요" });
   }
-  const result = await card.create(
-    req.body.memno,
-    req.body.colno,
-    req.body.ccontent,
-    req.body.corder
-  );
+  const memno = req.body.memno;
+  const colno = req.body.colno;
+  const ccontent = req.body.ccontent;
+  const newCorder = await card.getNewCorder(colno, memno);
+  const result = await card.create(memno, colno, ccontent, newCorder);
   if (result === 1) {
     res.status(201).json({ proc: true, msg: "카드 생성 성공" });
-  } else if (result === 0) {
-    res.status(400).json({ proc: false, msg: "카드 생성 실패" });
   } else {
-    res.status(409).json({ proc: false, msg: "중복 카드 생성" });
+    res.status(400).json({ proc: false, msg: "카드 생성 실패" });
   }
 });
 
 // update
 router.put("/", async function (req, res, next) {
-  // res.status(200).json(req.body);
-  // return;
-  if (req.body.fromNextCardno) {
-    const currCardVO = await card.readByCardno(req.body.currCardno);
-    await card.updateOrder(
-      req.body.fromNextCardno,
-      currCardVO.corder,
-      currCardVO.colno
-    );
-  }
+  const toColno = req.body.toColno;
+  const currCardno = req.body.currCardno;
+  const toNextCardno = req.body.toNextCardno;
+  const toPrevCardno = req.body.toPrevCardno;
 
-  if (req.body.toNextCardno) {
-    const nextCardVO = await card.readByCardno(req.body.toNextCardno);
-    await card.updateOrder(
-      req.body.toNextCardno,
-      req.body.currCardno,
-      req.body.toColno
-    );
-    await card.updateOrder(
-      req.body.currCardno,
-      nextCardVO.corder,
-      req.body.toColno
-    );
-  } else if (req.body.toPrevCardno) {
-    await card.updateOrder(
-      req.body.currCardno,
-      req.body.toPrevCardno,
-      req.body.toColno
-    );
-  } else {
-    await card.updateOrder(req.body.currCardno, 0, req.body.toColno);
-  }
-  res.status(201).json({ proc: true, msg: "카드 생성 성공" });
+  const corder_mid = await card.getCorderMid(toPrevCardno, toNextCardno);
+  await card.updateOrder(currCardno, corder_mid, toColno);
+  res.status(201).json({ proc: true, msg: "카드 이동 성공" });
 });
 
 // delete
