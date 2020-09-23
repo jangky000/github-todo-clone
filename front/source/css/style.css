@@ -25,6 +25,49 @@
     transition: all 0.5s ease-in-out !important;
 }
 
+/* 모달 */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.modal_overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.modal_content {
+    position: relative;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 30%;
+    height: fit-content;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 15px 15px;
+    animation: modalShowUp 0.5s ease-in-out;
+}
+
+@keyframes modalShowUp {
+    from {
+        opacity: 0;
+        transform: translateY(400px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* header */
 .header_title {
     float: left;
@@ -231,16 +274,17 @@
     margin-left: 10px;
 }
 
-.rcolumn_title .btn_columnTitle {
+.btn_columnTitle {
     all: unset;
     float: right;
     font-size: 20px;
     margin-left: 10px;
 }
 
-.rcolumn_title .btn_columnTitle:hover {
+.btn_columnTitle:hover {
     cursor: pointer;
-    font-weight: bold;
+    color: rgb(201, 201, 201);
+    /* font-weight: bold; */
 }
 
 .rcolumn_cards {
@@ -343,15 +387,15 @@
     box-shadow: 0 1px 3px rgba(106, 115, 125, 0.3);
 }
 
-.card_menu {
+.card_delete {
     position: absolute;
-    top: -10px;
+    top: -2px;
     right: 10px;
     display: inline;
-    font-size: 24px;
+    font-size: 20px;
 }
 
-.card_menu:hover {
+.card_delete:hover {
     color: rgb(216, 216, 216);
     cursor: pointer;
 }

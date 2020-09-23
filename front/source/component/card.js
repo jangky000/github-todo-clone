@@ -1,4 +1,4 @@
-import { $, $All, fetch_put } from '../utils/tools.js';
+import { $, $All, fetch_put, fetch_delete } from '../utils/tools.js';
 
 export default class {
     constructor() {}
@@ -6,7 +6,7 @@ export default class {
     render(card) {
         let divs = '';
         divs += `<div class='memo_card draggable' draggable="true" data-cardno='${card.cardno}'>`;
-        divs += `<div class='card_menu'>...</div>`;
+        divs += `<div class='card_delete'>x</div>`;
         divs += `<div class='card_content'>${card.ccontent}</div>`;
         divs += `<div class='card_author'>${card.id}</div>`;
         divs += `</div>`;
@@ -21,6 +21,10 @@ export default class {
 
         $All('.rcolumn_cards').forEach((e) => {
             e.addEventListener('dragover', this.dragOver.bind(this));
+        });
+
+        $All('.card_delete').forEach((e) => {
+            e.addEventListener('click', this.cardDelete);
         });
     }
 
@@ -106,5 +110,15 @@ export default class {
             },
             { offset: Number.NEGATIVE_INFINITY }
         ).element;
+    }
+    async cardDelete(e) {
+        const sw = confirm('선택한 카드를 삭제하시겠습니까?');
+        if (sw) {
+            const memo_card = e.currentTarget.closest('.memo_card');
+            const cardno = memo_card.dataset.cardno;
+            const result = await fetch_delete(`api/card/${cardno}`);
+            console.log(result);
+            memo_card.remove();
+        }
     }
 }

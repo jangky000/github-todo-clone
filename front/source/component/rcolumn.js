@@ -110,8 +110,8 @@ export default class {
     async deleteColumnHandler(e) {
         const currTarget = e.currentTarget;
         const colno = currTarget.closest('.rcolumn').dataset.colno;
-        const del = await fetch_delete(`/api/rcolumn/${colno}`);
-        console.log(del);
+        await fetch_delete(`/api/rcolumn/${colno}`);
+
         currTarget.closest('.rcolumn').remove();
     }
 

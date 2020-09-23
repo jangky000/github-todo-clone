@@ -15,19 +15,16 @@ export const fetch_post = async (url, data) => {
         },
         body: JSON.stringify(data),
     });
-    const body = await response.json();
-    // console.log(body);
-    // alert(JSON.stringify(body));
-    return body;
+    const json = await response.json();
+    return json;
 };
 
 export const fetch_delete = async (url) => {
     const response = await fetch(url, {
         method: 'DELETE',
     });
-    const body = await response.json();
-    // console.log(body);
-    alert(JSON.stringify(body));
+    const json = await response.json();
+    return json;
 };
 
 export const fetch_put = async function (url, data) {
@@ -38,7 +35,6 @@ export const fetch_put = async function (url, data) {
         },
         body: JSON.stringify(data),
     });
-    const body = await response.json();
-    console.log('put');
-    console.log(body);
+    const json = await response.json();
+    return json;
 };

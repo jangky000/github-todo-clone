@@ -38,7 +38,6 @@ router.put("/", function (req, res, next) {
 
 // delete
 router.delete("/:colno", async function (req, res, next) {
-  console.log("칼럼 삭제");
   const colno = req.params.colno;
   const result = await rcol.delete(colno);
   if (result === 1) {

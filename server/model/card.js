@@ -90,11 +90,12 @@ class Card extends MySQL {
   }
 
   delete(cardno) {
-    this.pool.execute("DELETE FROM card WHERE cardno = ?", [cardno], function (
-      err,
-      result
-    ) {
-      console.log(result.affectedRows);
+    return new Promise((resolve, reject) => {
+      const query = `DELETE FROM card WHERE cardno = ?`;
+      const params = [cardno];
+      this.pool.execute(query, params, function (err, result) {
+        resolve(result.affectedRows);
+      });
     });
   }
 }
