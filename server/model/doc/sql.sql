@@ -168,4 +168,7 @@ SELECT IFNULL(MAX(corder), 0) + 1 AS new_corder FROM card WHERE colno = 3 AND me
 
 INSERT INTO logger(lgmode, cardno, ccontent, mvfrom, mvto, rdate) VALUES ('테스트', 1, '일1', '할 일', '하는 중', NOW());
 
-
+SELECT logno, lgmode, cardno, ccontent, mvfrom, mvto, rdate 
+FROM logger 
+WHERE memno = 1 
+ORDER BY logno DESC;

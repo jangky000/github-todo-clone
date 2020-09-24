@@ -197,6 +197,7 @@
     height: -webkit-calc(100% - 80px); /* for Chrome, Safari */
     height: -moz-calc(100% - 80px); /* for Firefox */
     height: calc(100% - 80px); /* for IE */
+    overflow-y: auto;
 }
 
 .menu_title {
@@ -228,9 +229,19 @@
     border-bottom: 1px solid #e4e4e4;
 }
 
+.menu_list a {
+    font-weight: bold;
+    color: #6b3eff;
+    text-decoration: none;
+}
+
+.menu_list a:hover {
+    color: #b3c4ff;
+}
+
 .menu_list strong {
     font-weight: bold;
-    color: #003cff;
+    color: #6b3eff;
 }
 
 .menu_list strong:hover {

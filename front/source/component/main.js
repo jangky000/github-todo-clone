@@ -18,22 +18,22 @@ export default class {
     }
 
     async render() {
-        let main_layer;
+        let main_layout;
 
         if (this.isLogin.isLogin) {
             const rcolumns = await fetch_get('/api/rcolumn/');
-            main_layer = `
+            main_layout = `
                 <div class="container">
                     ${this.rcolObj.render(rcolumns)}
                 </div>
                 ${this.modal.render()}`;
         } else {
-            main_layer = `
+            main_layout = `
                 <div class="container">
                     ${this.loginObj.render()}
                 </div>`;
         }
-        $('#main').innerHTML = main_layer;
+        $('#main').innerHTML = main_layout;
     }
 
     addEvent() {

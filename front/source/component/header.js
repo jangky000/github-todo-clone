@@ -6,12 +6,12 @@ export default class {
         this.init();
     }
     async init() {
-        this.render();
+        await this.render();
         this.addEvent();
     }
 
-    render() {
-        const menu = this.isLogin.isLogin ? this.menu_layer() : ``;
+    async render() {
+        const menu = this.isLogin.isLogin ? await this.menu_layer() : ``;
         const header_layer = `
             <div class="container flex_header">
                 <div class="header_title"><h1>To Do 서비스</h1></div>
@@ -38,7 +38,7 @@ export default class {
         location.reload();
     }
 
-    menu_layer() {
+    async menu_layer() {
         let divs = '';
         divs += `<div class='menu_layer'>`;
         divs += `<div class='menu_title'>`;
@@ -51,11 +51,54 @@ export default class {
         divs += `</ul>`;
         divs += `<div class='menu_title'><h2>Activity</h2></div>`;
         divs += `<ul class='menu_list'>`;
-        divs += `<li>move from a to b</li>`;
-        divs += `<li>a is created</li>`;
+        divs += await this.logList();
         divs += `</ul>`;
         divs += `</div>`;
         return divs;
+    }
+
+    async logList() {
+        const rows = await fetch_get('/api/logger');
+        const listArr = rows.reduce((arr, row) => {
+            switch (row.lgmode) {
+                case 'CREATE':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> created the column <a href='#'>${row.mvto}</a></li>`
+                    );
+                    return arr;
+                case 'ADD':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> added <a href='#'>${row.ccontent}</a> to <a href='#'>${row.mvto}</a></li>`
+                    );
+                    return arr;
+                case 'MOVE':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> moved <a href='#'>${row.ccontent}</a> from <a href='#'>${row.mvfrom}</a> to <a href='#'>${row.mvto}</a></li>`
+                    );
+                    return arr;
+                case 'RENAME':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> renamed the column <a href='#'>${row.mvfrom}</a> to <a href='#'>${row.mvto}</a></li>`
+                    );
+                    return arr;
+                case 'UPDATE':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> updated <a href='#'>${row.ccontent}</a></li>`
+                    );
+                    return arr;
+                case 'DELETE':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> deleted the column <a href='#'>${row.mvfrom}</a></li>`
+                    );
+                    return arr;
+                case 'REMOVE':
+                    arr.push(
+                        `<li><a href='#'>@${this.isLogin.id}</a> removed <a href='#'>${row.ccontent}</a></li>`
+                    );
+                    return arr;
+            }
+        }, []);
+        return listArr.join('');
     }
 
     toggleMenu() {
