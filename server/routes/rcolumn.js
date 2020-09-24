@@ -9,11 +9,9 @@ const rcol = new Rcolumn();
 /* GET users listing. */
 /* rcolumn 과 card 조인 결과 조회 */
 router.get("/", async function (req, res, next) {
-  // console.log(req.session.memno);
   const result = await rcol.listJoinCardMem(req.session.memno);
   const parsed = rcolumnService.parseJoinResult(result);
   res.status(200).json(parsed);
-  // res.send('respond with a resource');
 });
 
 // insert
@@ -32,8 +30,11 @@ router.post("/", async function (req, res, next) {
 });
 
 // update
-router.put("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.put("/:colno/cname", async function (req, res, next) {
+  const colno = req.params.colno;
+  const newCname = req.body.new_cname;
+  const result = await rcol.updateCname(colno, newCname);
+  res.status(201).json({ proc: true, msg: "칼럼 수정 성공" });
 });
 
 // delete

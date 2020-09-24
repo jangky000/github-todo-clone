@@ -1,7 +1,10 @@
 import { $, $All, fetch_put, fetch_delete } from '../utils/tools.js';
+import Modal from './modal.js';
 
 export default class {
-    constructor() {}
+    constructor() {
+        this.modal = new Modal();
+    }
 
     render(card) {
         let divs = '';
@@ -17,6 +20,7 @@ export default class {
         $All('.memo_card').forEach((e) => {
             e.addEventListener('dragstart', this.dragStart);
             e.addEventListener('dragend', this.dragEnd);
+            e.addEventListener('dblclick', this.showUpdateModal.bind(this));
         });
 
         $All('.rcolumn_cards').forEach((e) => {
@@ -134,6 +138,22 @@ export default class {
 
             // 객체 삭제
             memo_card.remove(); // 이벤트도 같이 삭제?
+        }
+    }
+
+    showUpdateModal(e) {
+        const modal = $('.modal');
+        if (modal.classList.contains('hidden')) {
+            modal.classList.toggle('hidden');
+
+            // const card_content = e.currentTarget;
+            const memo_card = e.currentTarget;
+            const card_content = $('.card_content', memo_card);
+            const data = {
+                ccontent: card_content.textContent,
+                cardno: memo_card.dataset.cardno,
+            };
+            this.modal.insertEditCard(data);
         }
     }
 }

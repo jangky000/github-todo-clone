@@ -34,6 +34,13 @@ router.put("/", async function (req, res, next) {
   res.status(201).json({ proc: true, msg: "카드 이동 성공" });
 });
 
+router.put("/:cardno/ccontent", async function (req, res, next) {
+  const cardno = req.params.cardno;
+  const newCcontent = req.body.new_ccontent;
+  const result = await card.updateCcontent(cardno, newCcontent);
+  res.status(201).json({ proc: true, msg: "카드 수정 성공" });
+});
+
 // delete
 router.delete("/:cardno", async function (req, res, next) {
   const cardno = req.params.cardno;

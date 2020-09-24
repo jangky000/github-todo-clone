@@ -25,6 +25,41 @@
     transition: all 0.5s ease-in-out !important;
 }
 
+.btn_naive {
+    all: unset;
+    float: right;
+    font-size: 20px;
+    margin-left: 10px;
+    transform: translateY(-6px);
+}
+
+.btn_naive:hover {
+    cursor: pointer;
+    color: rgb(201, 201, 201);
+    /* font-weight: bold; */
+}
+
+.block {
+    display: block;
+}
+
+.btn_complete {
+    color: #fff;
+    background-color: #2ea44f;
+    border-color: rgba(27, 31, 35, 0.15);
+    box-shadow: 0 1px 0 rgba(27, 31, 35, 0.1),
+        inset 0 1px 0 hsla(0, 0%, 100%, 0.03);
+    padding: 5px 16px;
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.btn_complete:hover {
+    background-color: #288d44;
+}
+
 /* 모달 */
 .modal {
     position: fixed;
@@ -53,7 +88,7 @@
     height: fit-content;
     max-height: 400px;
     overflow-y: auto;
-    padding: 15px 15px;
+    /* padding: 15px 15px; */
     animation: modalShowUp 0.5s ease-in-out;
 }
 
@@ -66,6 +101,53 @@
         opacity: 1;
         transform: none;
     }
+}
+
+.modal_head {
+    padding: 15px 5%;
+    background-color: rgb(230, 230, 230);
+}
+
+.modal_h2text {
+    font-weight: 500;
+    display: inline;
+}
+
+.modal_body {
+    padding: 15px 5%;
+}
+
+.modal_input {
+    display: block;
+    width: 95%;
+    border: 1px solid #ececec;
+    background-color: rgb(230, 230, 230);
+    border-radius: 6px;
+    margin: 10px 0;
+    padding: 5px 12px;
+}
+
+.modal_input:focus {
+    background-color: #fff;
+    box-shadow: 0 0 5px #003cff62;
+    outline: none;
+}
+
+.modal_textarea {
+    display: block;
+    width: 95%;
+    height: 200px;
+    border: 1px solid #ececec;
+    background-color: rgb(230, 230, 230);
+    border-radius: 6px;
+    margin: 10px 0;
+    padding: 5px 12px;
+}
+
+.modal_textarea:focus {
+    background-color: #fff;
+    box-shadow: 0 0 5px #003cff62;
+    outline: none;
 }
 
 /* header */
@@ -274,7 +356,7 @@
     margin-left: 10px;
 }
 
-.btn_columnTitle {
+/* .btn_columnTitle {
     all: unset;
     float: right;
     font-size: 20px;
@@ -284,8 +366,7 @@
 .btn_columnTitle:hover {
     cursor: pointer;
     color: rgb(201, 201, 201);
-    /* font-weight: bold; */
-}
+} */
 
 .rcolumn_cards {
     flex: auto;

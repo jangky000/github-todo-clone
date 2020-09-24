@@ -53,7 +53,7 @@ class Rcolumn extends MySQL {
           WHERE member.memno = ?
         ) c 
       ON r.colno = c.colno
-      ORDER BY r.corder DESC, c.corder DESC
+      ORDER BY r.corder, c.corder DESC
       `;
       this.pool.query(query, [memno], function (err, rows, fields) {
         resolve(rows);
@@ -61,15 +61,13 @@ class Rcolumn extends MySQL {
     });
   }
 
-  update(rcolumnVO) {
+  updateCname(colno, newCname) {
     return new Promise((resolve, reject) => {
-      this.pool.execute(
-        "UPDATE rcolumn SET cname = ?, corder = ? WHERE colno = ?",
-        [columnVO.cname, columnVO.corder, columnVO.colno],
-        function (err, result) {
-          resolve(result.affectedRows);
-        }
-      );
+      const query = "UPDATE rcolumn SET cname = ? WHERE colno = ?";
+      const params = [newCname, colno];
+      this.pool.execute(query, params, function (err, result) {
+        resolve(result.affectedRows);
+      });
     });
   }
 

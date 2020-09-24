@@ -72,14 +72,15 @@ class Card extends MySQL {
     });
   }
 
-  update(CardVO) {
-    this.pool.execute(
-      "UPDATE card SET ccontent = ? WHERE cardno = ?",
-      [CardVO.ccontent, CardVO.cardno],
-      function (err, result) {
-        console.log(result.affectedRows);
-      }
-    );
+  updateCcontent(cardno, ccontent) {
+    return new Promise((resolve, reject) => {
+      const query = "UPDATE card SET ccontent = ? WHERE cardno = ?";
+      const params = [ccontent, cardno];
+      this.pool.execute(query, params, function (err, result) {
+        console.log(result);
+        resolve(result.affectedRows);
+      });
+    });
   }
 
   updateOrder(cardno, corder, colno) {

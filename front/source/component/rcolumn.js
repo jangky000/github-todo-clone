@@ -3,9 +3,12 @@ import { $, $All, fetch_delete, fetch_post } from '../utils/tools.js';
 import Card from './card.js';
 const cardObj = new Card();
 
+import Modal from './modal.js';
+
 export default class {
     constructor(isLogin) {
         this.isLogin = isLogin;
+        this.modal = new Modal();
     }
 
     render(rcolumns) {
@@ -27,8 +30,8 @@ export default class {
         let divs = '';
         divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>`;
         divs += `<span class='rcolumn_cnt'>${rcol.cards.length}</span>`;
-        divs += `<h2>${rcol.cname}</h2>`;
-        divs += `<button type='button' class='btn_deleteColumn btn_columnTitle'>x</button><button type='button' class='btn_showCardInput btn_columnTitle'>+</button>`;
+        divs += `<h2 class='rcolumn_cname'>${rcol.cname}</h2>`;
+        divs += `<button type='button' class='btn_deleteColumn btn_naive'>x</button><button type='button' class='btn_showCardInput btn_naive'>+</button>`;
         divs += this.createCardForm();
         divs += `</div>`;
         divs += `<div class='rcolumn_cards'>`;
@@ -53,6 +56,10 @@ export default class {
     }
 
     addEvent() {
+        $All('.rcolumn_title').forEach((e) => {
+            e.addEventListener('dblclick', this.showUpdateModal.bind(this));
+        });
+
         $('#btn_addColumn').addEventListener(
             'click',
             this.addColumnHandler.bind(this)
@@ -81,10 +88,25 @@ export default class {
         cardObj.addEvent();
     }
 
+    showUpdateModal(e) {
+        const modal = $('.modal');
+        if (modal.classList.contains('hidden')) {
+            modal.classList.toggle('hidden');
+
+            const rcolumn_title = e.currentTarget;
+            const rcolumn_cname = $('.rcolumn_cname', rcolumn_title);
+            const data = {
+                cname: rcolumn_cname.textContent,
+                colno: rcolumn_title.dataset.colno,
+            };
+            this.modal.insertEditColumn(data);
+        }
+    }
+
     async addColumnHandler() {
         const data = {
             cname: '새 칼럼',
-            corder: 1,
+            corder: 10,
             cards: [],
         };
         const add = await fetch_post('/api/rcolumn/', data);
@@ -104,6 +126,26 @@ export default class {
         $('.btn_deleteColumn', rcolumnBox).addEventListener(
             'click',
             this.deleteColumnHandler
+        );
+        $('.rcolumn_title', rcolumnBox).addEventListener(
+            'dblclick',
+            this.showUpdateModal.bind(this)
+        );
+        $('.btn_showCardInput', rcolumnBox).addEventListener(
+            'click',
+            this.showCardInput
+        );
+        $('.createCardText', rcolumnBox).addEventListener(
+            'input',
+            this.checkTextarea
+        );
+        $('.btn_cardCreate', rcolumnBox).addEventListener(
+            'click',
+            this.cardCreate.bind(this)
+        );
+        $('.btn_cardCancel', rcolumnBox).addEventListener(
+            'click',
+            this.cardCancel
         );
     }
 
@@ -177,6 +219,10 @@ export default class {
         const new_card = $('.memo_card', currRcolumnCards);
         new_card.addEventListener('dragstart', cardObj.dragStart);
         new_card.addEventListener('dragend', cardObj.dragEnd);
+        new_card.addEventListener(
+            'dblclick',
+            cardObj.showUpdateModal.bind(this)
+        );
     }
 
     cardCancel(e) {

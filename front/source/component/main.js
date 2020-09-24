@@ -18,22 +18,28 @@ export default class {
     }
 
     async render() {
-        const rcolumns = await fetch_get('/api/rcolumn/');
-        const divs = this.isLogin.isLogin
-            ? this.rcolObj.render(rcolumns)
-            : this.loginObj.render();
-        // const modal = this.modal.render();
-        const main_layer = `
-            <div class="container">
-                ${divs}
-            </div>
-        `;
+        let main_layer;
+
+        if (this.isLogin.isLogin) {
+            const rcolumns = await fetch_get('/api/rcolumn/');
+            main_layer = `
+                <div class="container">
+                    ${this.rcolObj.render(rcolumns)}
+                </div>
+                ${this.modal.render()}`;
+        } else {
+            main_layer = `
+                <div class="container">
+                    ${this.loginObj.render()}
+                </div>`;
+        }
         $('#main').innerHTML = main_layer;
     }
 
     addEvent() {
         if (this.isLogin.isLogin) {
             this.rcolObj.addEvent();
+            this.modal.addEvent();
         } else {
             this.loginObj.addEvent();
         }

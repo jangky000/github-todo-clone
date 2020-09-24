@@ -150,7 +150,7 @@ LEFT JOIN
 		WHERE member.memno = 1
 	) c 
 ON r.colno = c.colno
-ORDER BY r.corder DESC, c.corder DESC;
+ORDER BY r.corder, c.corder DESC;
 
 
 # 앞 뒤 row 두 개 찾기
@@ -164,5 +164,5 @@ SELECT corder/2 AS corder_mid FROM card WHERE cardno = 1
 
 # 칼럼에서 가장 큰 순번 + 1
 
-SELECT MAX(corder) + 1 AS new_corder FROM card WHERE colno = 1 AND memno = 1;
+SELECT IFNULL(MAX(corder), 0) + 1 AS new_corder FROM card WHERE colno = 3 AND memno = 1;
 
