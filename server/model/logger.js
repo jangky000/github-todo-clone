@@ -17,6 +17,20 @@ class Logger extends MySQL {
       });
     });
   }
+
+  readByMemno(memno) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT logno, lgmode, cardno, ccontent, mvfrom, mvto, rdate 
+      FROM logger 
+      WHERE memno = ? 
+      ORDER BY logno DESC`;
+      const params = [memno];
+      this.pool.query(query, params, function (err, rows, fields) {
+        resolve(rows);
+      });
+    });
+  }
 }
 
 module.exports = Logger;

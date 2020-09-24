@@ -1,17 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const memberRouter = require('./member');
-const rcolumnRouter = require('./rcolumn');
-const cardRouter = require('./card');
+const loggerRouter = require("./logger");
+const memberRouter = require("./member");
+const rcolumnRouter = require("./rcolumn");
+const cardRouter = require("./card");
 
 /* init */
-router.get('/', function(req, res, next) {
-  res.render('init', { title: 'init 화면' });
+router.get("/", function (req, res, next) {
+  res.render("init", { title: "init 화면" });
 });
 
-router.use('/member', memberRouter);
-router.use('/rcolumn', rcolumnRouter);
-router.use('/card', cardRouter);
+router.use("/logger", loggerRouter);
+router.use("/member", memberRouter);
+router.use("/rcolumn", rcolumnRouter);
+router.use("/card", cardRouter);
 
 module.exports = router;
