@@ -166,3 +166,4 @@ SELECT corder/2 AS corder_mid FROM card WHERE cardno = 1
 
 SELECT IFNULL(MAX(corder), 0) + 1 AS new_corder FROM card WHERE colno = 3 AND memno = 1;
 
+INSERT INTO logger(lgmode, cardno, ccontent, mvfrom, mvto, rdate) VALUES ('테스트', 1, '일1', '할 일', '하는 중', NOW());

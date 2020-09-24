@@ -4,6 +4,7 @@ const router = express.Router();
 const rcolumnService = require("../service/rcolumnService.js");
 
 const Rcolumn = require("../model/rcolumn");
+const { logger } = require("../lib/logger.js");
 const rcol = new Rcolumn();
 
 /* GET users listing. */
@@ -16,7 +17,6 @@ router.get("/", async function (req, res, next) {
 
 // insert
 router.post("/", async function (req, res, next) {
-  console.log("칼럼 추가");
   const cname = req.body.cname;
   const corder = req.body.corder;
   const insertId = await rcol.create(cname, corder);
@@ -38,16 +38,15 @@ router.put("/:colno/cname", async function (req, res, next) {
 });
 
 // delete
-router.delete("/:colno", async function (req, res, next) {
-  const colno = req.params.colno;
-  const result = await rcol.delete(colno);
-  if (result === 1) {
-    res.status(201).json({ proc: true, msg: "칼럼 삭제 성공" });
-  } else if (result === 0) {
-    res.status(400).json({ proc: false, msg: "칼럼 삭제 실패" });
-  } else {
-    res.status(409).json({ proc: false, msg: "중복 칼럼 삭제" });
-  }
-});
+router.delete(
+  "/:colno",
+  async function (req, res, next) {
+    const colno = req.params.colno;
+    const result = await rcol.delete(colno);
+    next();
+    // res.status(400).json({ proc: false, msg: "칼럼 삭제 실패" });
+  },
+  logger
+);
 
 module.exports = router;

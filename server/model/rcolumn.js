@@ -11,7 +11,6 @@ class Rcolumn extends MySQL {
         "INSERT INTO rcolumn(cname, corder) VALUES(?, ?)",
         [cname, corder],
         function (err, result) {
-          //   console.log(result);
           resolve(result.insertId);
         }
       );

@@ -75,9 +75,12 @@ export default class {
     actionLog(dragEl, targetCol, afterElement) {
         const fromCol = dragEl.closest('.rcolumn');
         const fromColno = fromCol.dataset.colno;
+        const fromCname = $('.rcolumn_cname', fromCol).textContent;
         const toCol = targetCol.closest('.rcolumn');
         const toColno = toCol.dataset.colno;
+        const toCname = $('.rcolumn_cname', toCol).textContent;
         const currCardno = dragEl.dataset.cardno;
+        const currCcontent = $('.card_content', dragEl).textContent;
         const toNextCardno = afterElement ? afterElement.dataset.cardno : null;
         const toPrevCardno = afterElement
             ? afterElement.previousSibling
@@ -91,8 +94,11 @@ export default class {
         );
         const data = {
             fromColno: fromColno,
+            fromCname: fromCname,
             toColno: toColno,
+            toCname: toCname,
             currCardno: currCardno,
+            currCcontent: currCcontent,
             toNextCardno: toNextCardno,
             toPrevCardno: toPrevCardno,
         };
@@ -128,7 +134,9 @@ export default class {
         if (sw) {
             const memo_card = e.currentTarget.closest('.memo_card');
             const cardno = memo_card.dataset.cardno;
-            const result = await fetch_delete(`api/card/${cardno}`);
+            const ccontent = $('.card_content', memo_card).textContent;
+            const data = { ccontent: ccontent };
+            const result = await fetch_delete(`api/card/${cardno}`, data);
             console.log(result);
 
             // 숫자 업데이트

@@ -154,7 +154,9 @@ export default class {
         if (sw) {
             const rcolumn = e.currentTarget.closest('.rcolumn');
             const colno = rcolumn.dataset.colno;
-            const result = await fetch_delete(`api/rcolumn/${colno}`);
+            const cname = $('.rcolumn_cname', rcolumn).textContent;
+            const data = { cname: cname };
+            const result = await fetch_delete(`api/rcolumn/${colno}`, data);
             console.log(result);
             rcolumn.remove();
         }
@@ -183,11 +185,13 @@ export default class {
 
     async cardCreate(e) {
         const currRcolTitle = e.currentTarget.closest('.rcolumn_title');
+        const cname = $('.rcolumn_cname', currRcolTitle).textContent;
         const text = $('.createCardText', currRcolTitle).value;
         const currRcolumn = currRcolTitle.closest('.rcolumn');
         const colno = currRcolumn.dataset.colno;
         const data = {
             memno: this.isLogin.memno,
+            cname: cname,
             colno: colno,
             ccontent: text,
             corder: 0,
