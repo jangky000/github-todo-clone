@@ -29,7 +29,6 @@ router.put("/", async function (req, res, next) {
   const currCardno = req.body.currCardno;
   const toNextCardno = req.body.toNextCardno;
   const toPrevCardno = req.body.toPrevCardno;
-
   const corder_mid = await card.getCorderMid(toPrevCardno, toNextCardno);
   await card.updateOrder(currCardno, corder_mid, toColno);
   res.status(201).json({ proc: true, msg: "카드 이동 성공" });

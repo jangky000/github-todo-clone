@@ -170,7 +170,13 @@ export default class {
             ccontent: text,
             id: this.isLogin.id,
         });
-        $('.rcolumn_cards', currRcolumn).insertAdjacentHTML('afterbegin', html); // 추가
+        const currRcolumnCards = $('.rcolumn_cards', currRcolumn);
+        currRcolumnCards.insertAdjacentHTML('afterbegin', html);
+
+        // 이벤트 추가 -> 이벤트 위임을 사용하면 추가할 일이 없어진다.. 컬럼 별로 이벤트 관리 등
+        const new_card = $('.memo_card', currRcolumnCards);
+        new_card.addEventListener('dragstart', cardObj.dragStart);
+        new_card.addEventListener('dragend', cardObj.dragEnd);
     }
 
     cardCancel(e) {

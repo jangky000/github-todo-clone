@@ -6,7 +6,7 @@ class Card extends MySQL {
   }
   getNewCorder(colno, memno) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT MAX(corder) + 1 AS new_corder FROM card WHERE colno = ? AND memno = ?`;
+      const query = `SELECT IFNULL(MAX(corder), 0) + 1 AS new_corder FROM card WHERE colno = ? AND memno = ?`;
       const params = [colno, memno];
       this.pool.query(query, params, function (err, rows, fields) {
         resolve(rows[0].new_corder);
@@ -41,7 +41,10 @@ class Card extends MySQL {
   getCorderMid(toPrevCardno, toNextCardno) {
     return new Promise((resolve, reject) => {
       let query, params;
-      if (!toPrevCardno) {
+      if (!(toPrevCardno || toNextCardno)) {
+        resolve(1);
+        return;
+      } else if (!toPrevCardno) {
         query = `SELECT corder+1 AS corder_mid FROM card WHERE cardno = ?`;
         params = [toNextCardno];
       } else if (!toNextCardno) {

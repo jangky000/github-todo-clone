@@ -69,15 +69,17 @@ export default class {
     }
 
     actionLog(dragEl, targetCol, afterElement) {
-        const fromColno = dragEl.parentElement.parentElement.dataset.colno;
-        const toColno = targetCol.parentElement.dataset.colno;
+        const fromColno = dragEl.closest('.rcolumn').dataset.colno;
+        const toColno = targetCol.closest('.rcolumn').dataset.colno;
         const currCardno = dragEl.dataset.cardno;
         const toNextCardno = afterElement ? afterElement.dataset.cardno : null;
         const toPrevCardno = afterElement
             ? afterElement.previousSibling
                 ? afterElement.previousSibling.dataset.cardno
                 : null
-            : targetCol.lastChild.dataset.cardno;
+            : targetCol.lastChild
+            ? targetCol.lastChild.dataset.cardno
+            : null;
         console.log(
             `${fromColno} 칼럼의 ${currCardno}를 ${toColno} 칼럼으로 이동`
         );
