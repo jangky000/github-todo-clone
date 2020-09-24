@@ -1,10 +1,10 @@
 const Logger = require("../model/logger");
 const log = new Logger();
 
-function logCardAdd(req) {
+function logCardAdd(req, res) {
   // 카드 등록: add memno cardno ccontent mvto
   const lgmode = "ADD";
-  const cardno = req.locals.newCardno;
+  const cardno = res.locals.newCardno;
   const ccontent = req.body.ccontent; // v
   const mvfrom = null;
   const mvto = req.body.cname;
@@ -33,7 +33,7 @@ function logMove(req) {
   const mvto = req.body.toCname;
   const memno = req.session.memno;
   log.create(lgmode, cardno, ccontent, mvfrom, mvto, memno);
-  // res.status(201).json({ proc: true, msg: "카드 이동 성공" });
+  //
 }
 
 function logColumnRename(req) {
@@ -43,21 +43,22 @@ function logColumnRename(req) {
   const cardno = null;
   const ccontent = null;
   const mvfrom = req.body.cname;
-  const mvto = req.body.cname;
+  const mvto = req.body.new_cname;
   const memno = req.session.memno;
-  // res.status(201).json({ proc: true, msg: "칼럼 수정 성공" });
+  log.create(lgmode, cardno, ccontent, mvfrom, mvto, memno);
+  //
 }
 
-function logCardUpdate(req, res, next) {
+function logCardUpdate(req) {
   // lgmode, cardno, ccontent, mvfrom, mvto, memno
   // 카드 업데이트: update cardno ccontent memno
   const lgmode = "UPDATE";
-  const cardno = req.locals.newCardno;
-  const ccontent = req.body.ccontent;
+  const cardno = req.params.cardno;
+  const ccontent = req.body.new_ccontent;
   const mvfrom = null;
   const mvto = null;
   const memno = req.session.memno;
-  //   res.status(201).json({ proc: true, msg: "카드 수정 성공" });
+  log.create(lgmode, cardno, ccontent, mvfrom, mvto, memno);
 }
 
 function logCardRemove(req) {
@@ -89,26 +90,34 @@ module.exports = {
     switch (req.method) {
       case "POST":
         if (req.body.ccontent) {
-          logCardAdd(req, res, next);
-          res.status(201).json({ proc: true, msg: "카드 등록 성공" });
+          logCardAdd(req, res);
+          res.status(201).json(res.locals.resp);
         } else {
-          logColumnCreate(req, res, next);
-          res.status(201).json({ proc: true, msg: "칼럼 등록 성공" });
+          logColumnCreate(req);
+          res.status(201).json(res.locals.resp);
         }
         break;
       case "PUT":
-        logMove(req);
+        if (req.body.currCardno) {
+          logMove(req);
+          res.status(201).json({ proc: true, msg: "카드 이동 성공" });
+        } else if (req.body.new_cname) {
+          logColumnRename(req);
+          res.status(201).json({ proc: true, msg: "칼럼 수정 성공" });
+        } else if (req.body.new_ccontent) {
+          logCardUpdate(req);
+          res.status(201).json({ proc: true, msg: "카드 수정 성공" });
+        }
         break;
       case "DELETE":
         if (req.params.cardno) {
-          logCardRemove(req, res, next);
+          logCardRemove(req);
           res.status(201).json({ proc: true, msg: "카드 삭제 성공" });
         } else {
-          logColumnDelete(req, res, next);
+          logColumnDelete(req);
           res.status(201).json({ proc: true, msg: "칼럼 삭제 성공" });
         }
         break;
     }
-    res.status(201).json({ proc: true, msg: "칼럼 등록 성공" });
   },
 };

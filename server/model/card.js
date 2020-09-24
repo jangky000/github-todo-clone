@@ -77,7 +77,6 @@ class Card extends MySQL {
       const query = "UPDATE card SET ccontent = ? WHERE cardno = ?";
       const params = [ccontent, cardno];
       this.pool.execute(query, params, function (err, result) {
-        console.log(result);
         resolve(result.affectedRows);
       });
     });

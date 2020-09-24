@@ -20,12 +20,14 @@ router.post(
     const insertId = await card.create(memno, colno, ccontent, newCorder);
     res.locals.newCardno = insertId;
     if (insertId) {
-      res
-        .status(201)
-        .json({ proc: true, msg: "카드 생성 성공", insertId: insertId });
-    } else {
-      res.status(400).json({ proc: false, msg: "카드 생성 실패" });
+      res.locals.resp = {
+        proc: true,
+        msg: "카드 생성 성공",
+        insertId: insertId,
+      };
     }
+    next();
+    // res.status(400).json({ proc: false, msg: "카드 생성 실패" });
   },
   logger
 );
@@ -55,7 +57,8 @@ router.put(
     const cardno = req.params.cardno;
     const newCcontent = req.body.new_ccontent;
     const result = await card.updateCcontent(cardno, newCcontent);
-    res.status(201).json({ proc: true, msg: "카드 수정 성공" });
+    // res.status(201).json({ proc: true, msg: "카드 수정 성공" });
+    next();
   },
   logger
 );

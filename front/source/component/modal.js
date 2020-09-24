@@ -6,8 +6,6 @@ export default class {
         divs += `<div class="modal hidden">`;
         divs += `<div class="modal_overlay"></div>`;
         divs += `<div class="modal_content">`;
-        // divs += this.editColumn({ cname: '할 일', colno: 1 });
-        // divs += this.editCard({ ccontent: 'aaaaaaaaaaaaaaaaaaaa', cardno: 1 });
         divs += `</div>`;
         divs += `</div>`;
         return divs;
@@ -20,11 +18,10 @@ export default class {
         divs += `</div>`;
         divs += `<div class="modal_body">`;
         divs += `<h2 class="modal_h2text">Column name<h2>`;
-        divs += `<input type='text' class='modal_input' id='edit_cname' name='cname' data-colno='${data.colno}' value='${data.cname}' autofocus>`;
+        divs += `<input type='text' class='modal_input' id='edit_cname' name='cname' data-origin='${data.cname}' data-colno='${data.colno}' value='${data.cname}' autofocus>`;
         divs += `<button type='button' class='btn_complete block' id='btn_columnUpdate'>Update column</button>`;
         divs += `</div>`;
         $('.modal_content').innerHTML = divs;
-        // return divs;
         $('.modal_close').addEventListener('click', this.close_modal);
         $('#btn_columnUpdate').addEventListener('click', this.columnUpdate);
     }
@@ -40,7 +37,6 @@ export default class {
         divs += `<button type='button' class='btn_complete block' id='btn_cardUpdate'>Save note</button>`;
         divs += `</div>`;
         $('.modal_content').innerHTML = divs;
-        // return divs;
         $('.modal_close').addEventListener('click', this.close_modal);
         $('#btn_cardUpdate').addEventListener('click', this.cardUpdate);
     }
@@ -60,18 +56,16 @@ export default class {
 
     async columnUpdate() {
         const input = $('#edit_cname');
+        const cname = input.dataset.origin;
         const new_cname = input.value;
         const colno = input.dataset.colno;
-        const data = { new_cname: new_cname };
+        const data = { cname: cname, new_cname: new_cname };
         const result = await fetch_put(`/api/rcolumn/${colno}/cname`, data);
         console.log(result);
         location.reload();
     }
 
     async cardUpdate() {
-        // console.log($('#edit_ccontent').textContent);
-        // console.log($('#edit_ccontent').dataset.cardno);
-
         const textarea = $('#edit_ccontent');
         const new_ccontent = textarea.value;
         const cardno = textarea.dataset.cardno;
