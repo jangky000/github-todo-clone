@@ -69,8 +69,10 @@ export default class {
     }
 
     actionLog(dragEl, targetCol, afterElement) {
-        const fromColno = dragEl.closest('.rcolumn').dataset.colno;
-        const toColno = targetCol.closest('.rcolumn').dataset.colno;
+        const fromCol = dragEl.closest('.rcolumn');
+        const fromColno = fromCol.dataset.colno;
+        const toCol = targetCol.closest('.rcolumn');
+        const toColno = toCol.dataset.colno;
         const currCardno = dragEl.dataset.cardno;
         const toNextCardno = afterElement ? afterElement.dataset.cardno : null;
         const toPrevCardno = afterElement
@@ -91,6 +93,13 @@ export default class {
             toPrevCardno: toPrevCardno,
         };
         fetch_put('/api/card', data);
+
+        // 숫자 업데이트
+        const prespan = $('.rcolumn_cnt', fromCol);
+        prespan.innerHTML = parseInt(prespan.textContent) - 1;
+
+        const nextspan = $('.rcolumn_cnt', toCol);
+        nextspan.innerHTML = parseInt(nextspan.textContent) + 1;
     }
 
     getDragAfterElement(container, y) {
@@ -117,7 +126,14 @@ export default class {
             const cardno = memo_card.dataset.cardno;
             const result = await fetch_delete(`api/card/${cardno}`);
             console.log(result);
-            memo_card.remove();
+
+            // 숫자 업데이트
+            const rcolumn = memo_card.closest('.rcolumn');
+            const span = $('.rcolumn_cnt', rcolumn);
+            span.innerHTML = parseInt(span.textContent) - 1;
+
+            // 객체 삭제
+            memo_card.remove(); // 이벤트도 같이 삭제?
         }
     }
 }

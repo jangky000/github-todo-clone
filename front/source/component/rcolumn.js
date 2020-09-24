@@ -26,7 +26,7 @@ export default class {
     rcolumnShape(rcol) {
         let divs = '';
         divs += `<div class='rcolumn_title' data-colno='${rcol.colno}' data-corder='${rcol.corder}'>`;
-        divs += `<span>${rcol.cards.length}</span>`;
+        divs += `<span class='rcolumn_cnt'>${rcol.cards.length}</span>`;
         divs += `<h2>${rcol.cname}</h2>`;
         divs += `<button type='button' class='btn_deleteColumn btn_columnTitle'>x</button><button type='button' class='btn_showCardInput btn_columnTitle'>+</button>`;
         divs += this.createCardForm();
@@ -160,7 +160,7 @@ export default class {
         }
 
         // 숫자 업데이트
-        const span = $('span', currRcolTitle);
+        const span = $('.rcolumn_cnt', currRcolTitle);
         span.innerHTML = parseInt(span.textContent) + 1;
 
         // 카드 추가

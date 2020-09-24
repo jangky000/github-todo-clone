@@ -256,7 +256,7 @@
     padding: 8px;
 }
 
-.rcolumn_title span {
+.rcolumn_title .rcolumn_cnt {
     display: inline-block;
     text-align: center;
     width: 20px;
