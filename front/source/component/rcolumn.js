@@ -203,6 +203,7 @@ export default class {
         const createCardForm = $('.createCardForm', currRcolTitle);
         if (!createCardForm.classList.contains('hidden')) {
             createCardForm.classList.toggle('hidden');
+            $('.createCardText', createCardForm).value = '';
         }
 
         // 숫자 업데이트
@@ -227,10 +228,15 @@ export default class {
             'dblclick',
             cardObj.showUpdateModal.bind(this)
         );
+        new_card.addEventListener('click', cardObj.cardDelete);
     }
 
     cardCancel(e) {
         const currRcolTitle = e.currentTarget.closest('.rcolumn_title');
-        $('.createCardForm', currRcolTitle).classList.toggle('hidden');
+        const createCardForm = $('.createCardForm', currRcolTitle);
+        if (!createCardForm.classList.contains('hidden')) {
+            createCardForm.classList.toggle('hidden');
+            $('.createCardText', createCardForm).value = '';
+        }
     }
 }

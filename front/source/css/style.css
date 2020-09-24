@@ -198,6 +198,7 @@
     height: -moz-calc(100% - 80px); /* for Firefox */
     height: calc(100% - 80px); /* for IE */
     overflow-y: auto;
+    z-index: 10;
 }
 
 .menu_title {
