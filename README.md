@@ -1,15 +1,80 @@
-# javascript-w3-todo
+# Todo 서비스
 
-스프린트 3-4주차 웹 프로젝트 - 할일관리
+- [배포 링크](http://101.101.210.76:5000/)
+- 할 일 메모를 간단하게 관리할 수 있는 사이트
+- 카드는 각 사용자가 따로 관리한다
 
-- 배포 주소: http://101.101.210.76:5000
+## 요구사항 분석
+
+### <FE>
+
+- [x] Webpack과 Babel을 활용해서 기본적인 환경을 구성
+- [x] ES Mdoules방식으로 모듈화
+- [x] 비동기 통신은 fetch API를 활용
+- [x] DOM 조작과정에서 template literal 을 활용한 문자열 기반의 파싱
+- [x] Drag and Drop 구현
+- [ ] 이벤트 위임방식을 적극 활용
+
+### <BE>
+
+- [x] Node.js와 Express를 활용
+- [x] 프론트엔드 기능구현에 필요한 API를 제공
+- [x] 템플릿 엔진보다는 json을 응답해주는 API형태로 구현
+- [x] MySQL을 사용하고 드라이버는 mysql2를 사용
+- [x] express-session을 사용해서 인증을 구현
+- [x] session은 메모리에 저장
+- [x] 배포는 클라우드 서버의 단일 인스턴스를 이용해서 배포를 진행
+- [x] 배포시 깃의 tag를 적극적으로 활용
+- [x] 다사용자가 사용할 수 있도록 설계
+- [ ] 사용자별로 각 목록에 대한 접근권한 (읽기 / 쓰기) 제한 기능을 구현
+
+## 기능
+
+- 세션 로그인/ 로그아웃
+- 메뉴 레이어
+  - 다크모드 변환
+  - 클럽모드 변환
+  - 액션 로그 기록 조회
+- 칼럼 생성/수정/삭제
+- 카드 생성/수정/삭제
+- 드래그 앤 드롭 카드 이동
+
+## 사용법
+
+### 로그인 사용법
+
+- 아이디와 패스워드를 입력 후 `로그인` 버튼 클릭
+  - 사용가능한 id
+  - id: user1, pw: 1234
+  - id: user2, pw: 1234
+
+### 로그아웃 사용법
+
+- 우측 상단의 `Menu`를 클릭 후 로그아웃 클릭
+
+### 다크모드/클럽모드
+
+- 우측 상단의 `Menu`를 클릭 후 `다크모드` / `클럽모드` 클릭
+- 다시 클릭하면 `다크모드` / `클럽모드` 해제
+
+### 칼럼 사용법
+
+- 생성: `+ 칼럼 추가`를 눌러 칼럼 생성
+- 수정: 칼럼 이름을 더블 클릭하여 모달 창에서 수정
+- 삭제: 칼럼 이름 옆에 `x`버튼을 누르고 팝업 창에서 확인 선택
+
+### 카드 사용법
+
+- 생성: 칼럼 이름 옆에 `+` 버튼을 눌러 생성된 창에 텏트를 기입 후 `입력` 버튼을 클릭
+- 수정: 카드를 더블 클릭하여 모달 창에서 수정
+- 이동: 드래그 앤 드롭으로 원하는 위치로 이동
+- 삭제: 카드 우측 상단의 `x` 버튼을 누르고 팝업 창에서 확인 선택
 
 ### 서버 실행 방법
 
 - sudo npm install http-server -g
 - cd front && npm install
-- cd ..
-- cd server && npm install
+- cd ../server && npm install
 - npm run dev (pm2 start "npm run dev" --name todoApp)
 
 ### Week3 작업분류
@@ -103,7 +168,7 @@
 - package.json 프론트 프록시 주소 변경
 - rcolumn 칼럼 삭제 API front 연결
 
-## week4
+## week4 개발 진행상황
 
 ### day1
 
@@ -111,38 +176,62 @@
 - babel, polyfill, babel loader 설정
 - inline source map 적용, webpack-dev-server 적용
 
-### url 라우팅
+### day2
+
+- front에서 카드 생성 기능 구현
+- front 상에서 드래그 앤 드롭 구현
+
+### day3
+
+- fix card component 분리
+- fix rcolumn 컴포넌트 분리
+- fix 동적으로 칼럼 추가 삭제
+- feat 로그인 컴포넌트 추가
+- fix 카드 추가 기능 구현
+- feat 메뉴 레이어 추가
+- fix 칼럼, 카드 조회 수정
+- feat 순서 수정 서버 API
+- feat 카드 삭제 구현
+- fix 카드 추가 reload 없이 하기
+- fix 칼럼 삭제 confirm 창 추가
+
+### day4
+
+- fix 카드 생성시 이벤트 추가
+- fix 카드 이동, 삭제 시 칼럼에 카운트 숫자 업데이트
+- feat 카드, 칼럼 수정 기능 추가
+- feat 로그: 칼럼 삭제, 카드 삭제 , 카드 이동
+- feat 로그: 칼럼 삽입, 수정 , 카드 삽입, 수정 추가
+- feat logger 라우터 추가
+- feat log를 menu layer에 출력
+- fix bundle 재 생성
+- fix 카드 생성시 삭제 이벤트 추가, 카드 생성 폼 개선
+
+### day5
+
+- feat 메뉴 창에 다크모드 클럽모드 추가
+- fix webpack 업데이트
+- fix readme 업데이트
+- 배포 완료
+
+### Server API 라우팅 url
 
 - member
   로그인(패스워드 확인, 세션추가) post /api/member/login
   로그아웃(세션 삭제) get /api/member/logout
+  로그인 여부 확인 get /api/member/isLogin
 
-로그인 여부 확인 get /api/member/isLogin
-
-아이디 중복 확인 get /api/member/isDup/user1
-회원 가입 post /api/member
-회원 정보 수정 put /api/member/user1
-patch /api/member/user1/pw
-patch /api/member/user1/mname
-회원 탈퇴 delete /api/member/1
+- 로그 조회
+  get /api/logger
 
 - 칼럼
-  칼럼 리스트 get /api/rcolumn/list
-  칼럼 입력 post /api/rcolumn
-  칼럼 이름 수정 patch /api/rcolumn/1/cname
-  칼럼 순서 수정 patch /api/rcolumn/1/order
+  칼럼과 카드 조인 결과 조회 get /api/rcolum/
+  칼럼 생성 post /api/rcolumn
+  칼럼 이름 수정 put /api/rcolumn/:colno/cname
   칼럼 삭제 delete /api/rcolumn/1
 
 - 카드
-  카드 리스트 get /api/card/list
-  카드 입력 post /api/card
-  카드 내용 수정 patch /api/card/1/content
-  카드 순서 수정 patch /api/card/1/order
+  카드 생성 post /api/card
+  카드 이동 put /api/card/
+  카드 내용 수정 put /api/card/:cardno/ccontent
   카드 삭제 delete /api/card/1
-
-### 진행할 것
-
-깃 태그 사용하기
-에러처리(throw -> try catch next(err))
-프로젝트 트리 구조 캡처
-islogin 접근 제한 미들웨어 추가하기
