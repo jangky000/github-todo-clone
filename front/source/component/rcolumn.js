@@ -226,9 +226,12 @@ export default class {
         new_card.addEventListener('dragend', cardObj.dragEnd);
         new_card.addEventListener(
             'dblclick',
-            cardObj.showUpdateModal.bind(this)
+            cardObj.showUpdateModal.bind(cardObj)
         );
-        new_card.addEventListener('click', cardObj.cardDelete);
+        $('.card_delete', new_card).addEventListener(
+            'click',
+            cardObj.cardDelete
+        );
     }
 
     cardCancel(e) {
