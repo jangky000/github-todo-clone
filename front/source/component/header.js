@@ -3,6 +3,7 @@ import { $, fetch_get } from '../utils/tools.js';
 export default class {
     constructor(isLogin) {
         this.isLogin = isLogin;
+        this.interval;
         this.init();
     }
     async init() {
@@ -29,6 +30,8 @@ export default class {
             $('#btn_menu').addEventListener('click', this.toggleMenu);
             $('.menu_close').addEventListener('click', this.toggleMenu);
             $('.spn_logout').addEventListener('click', this.logoutHandler);
+            $('.spn_darkmode').addEventListener('click', this.darkmodeHandler);
+            $('.spn_clubmode').addEventListener('click', this.clubmodeHandler);
         }
     }
 
@@ -36,6 +39,32 @@ export default class {
         const logout = await fetch_get('/api/member/logout');
         console.log(logout);
         location.reload();
+    }
+
+    darkmodeHandler() {
+        $('html').classList.toggle('darkmode');
+    }
+
+    clubmodeHandler() {
+        const html = $('html');
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+            html.style = '';
+            return;
+        }
+        if (confirm('파티가 시작됩니다!')) {
+            this.interval = setInterval(() => {
+                html.style = `
+                        background-color: rgba(
+                            ${Math.random() * 255}, 
+                            ${Math.random() * 255}, 
+                            ${Math.random() * 255}, 
+                            ${Math.random() * 255});
+                        filter: invert(1) hue-rotate(${Math.random() * 180}deg);
+                        `;
+            }, 10);
+        }
     }
 
     async menu_layer() {
@@ -47,7 +76,9 @@ export default class {
         divs += `</div>`;
         divs += `<ul class='menu_list'>`;
         divs += `<li><strong>${this.isLogin.id}</strong> 님 반갑습니다.</li>`;
-        divs += `<li><span class='spn_logout'>로그아웃</span></li>`;
+        divs += `<li><span class='spn_logout spn_hover'>로그아웃</span></li>`;
+        divs += `<li><span class='spn_darkmode spn_hover'>다크모드</span></li>`;
+        divs += `<li><span class='spn_clubmode spn_hover'>클럽모드</span></li>`;
         divs += `</ul>`;
         divs += `<div class='menu_title'><h2>Activity</h2></div>`;
         divs += `<ul class='menu_list'>`;

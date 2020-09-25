@@ -2,7 +2,7 @@
 
 #header {
     height: 80px;
-    background-color: rgb(105, 105, 105);
+    background-color: #92be94;
 }
 
 #main {
@@ -150,6 +150,11 @@
     outline: none;
 }
 
+.darkmode {
+    background-color: #ffffff;
+    filter: invert(1) hue-rotate(180deg);
+}
+
 /* header */
 .header_title {
     float: left;
@@ -250,7 +255,11 @@
     color: #b3c4ff;
 }
 
-.spn_logout:hover {
+/* .spn_logout:hover {
+    color: #c5c5c5;
+    cursor: pointer;
+} */
+.spn_hover:hover {
     color: #c5c5c5;
     cursor: pointer;
 }
