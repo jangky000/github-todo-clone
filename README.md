@@ -43,6 +43,8 @@
 
 ### 로그인 사용법
 
+![로그인](https://user-images.githubusercontent.com/46799722/94225371-b5640c00-ff2f-11ea-867c-ba949ef9fb05.gif)
+
 - 아이디와 패스워드를 입력 후 `로그인` 버튼 클릭
   - 사용가능한 id
   - id: user1, pw: 1234
@@ -50,20 +52,36 @@
 
 ### 로그아웃 사용법
 
+![로그아웃](https://user-images.githubusercontent.com/46799722/94225375-b72dcf80-ff2f-11ea-8b5c-4a66da60e568.gif)
+
 - 우측 상단의 `Menu`를 클릭 후 로그아웃 클릭
 
+### 다사용자 지원
+
+![다사용자](https://user-images.githubusercontent.com/46799722/94225382-b8f79300-ff2f-11ea-9b71-f6a8a2351250.gif)
+
 ### 다크모드/클럽모드
+
+- 다크모드
+![다크모드](https://user-images.githubusercontent.com/46799722/94225376-b72dcf80-ff2f-11ea-83b5-89a85145bead.gif)
+
+- 클럽모드
+![클럽모드](https://user-images.githubusercontent.com/46799722/94225377-b7c66600-ff2f-11ea-9d22-eda6fc456cd8.gif)
 
 - 우측 상단의 `Menu`를 클릭 후 `다크모드` / `클럽모드` 클릭
 - 다시 클릭하면 `다크모드` / `클럽모드` 해제
 
 ### 칼럼 사용법
 
+![칼럼 추가 수정 삭제](https://user-images.githubusercontent.com/46799722/94225379-b85efc80-ff2f-11ea-9b31-ac11264d31bc.gif)
+
 - 생성: `+ 칼럼 추가`를 눌러 칼럼 생성
 - 수정: 칼럼 이름을 더블 클릭하여 모달 창에서 수정
 - 삭제: 칼럼 이름 옆에 `x`버튼을 누르고 팝업 창에서 확인 선택
 
 ### 카드 사용법
+
+![칼럼 카드 동작 모두](https://user-images.githubusercontent.com/46799722/94225381-b85efc80-ff2f-11ea-956c-92b0ee8f3186.gif)
 
 - 생성: 칼럼 이름 옆에 `+` 버튼을 눌러 생성된 창에 텏트를 기입 후 `입력` 버튼을 클릭
 - 수정: 카드를 더블 클릭하여 모달 창에서 수정
